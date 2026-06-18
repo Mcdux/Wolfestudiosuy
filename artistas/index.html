@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolf Estudios para Artistas — Identidad Visual, Portadas y Videos en Uruguay</title>
+<meta name="description" content="Wolf Estudios: identidad de artista, portadas de álbum, videos, reels y presencia en redes para músicos y creadores en Uruguay.">
+<meta name="author" content="Wolf Estudios">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wolfestudios.uy/artistas">
+<meta property="og:title" content="Wolf Estudios para Artistas — Identidad Visual, Portadas y Videos en Uruguay">
+<meta property="og:description" content="Identidad visual, portadas, videos y presencia digital para músicos y creadores en Uruguay.">
+<meta property="og:image" content="https://wolfestudios.uy/assets/logo_sin_fondo.png">
+<meta property="og:locale" content="es_UY">
+<link rel="canonical" href="https://wolfestudios.uy/artistas">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Identidad visual y contenido digital para artistas",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "Wolf Estudios",
+    "url": "https://wolfestudios.uy/",
+    "logo": "https://wolfestudios.uy/assets/logo_sin_fondo.png",
+    "areaServed": "Uruguay"
+  },
+  "areaServed": "Uruguay",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Músicos, artistas y creadores de contenido"
+  },
+  "url": "https://wolfestudios.uy/artistas"
+}
+</script>
+<style>
+  :root {
+    --gold: #45c3d2;
+    --gold-light: #7eddea;
+    --navy: #0d1b2a;
+    --off-white: #dde4e8;
+    --muted: #8a9aaa;
+    /* Artistas accent */
+    --accent: #e84a4a;
+    --accent-dark: #b52222;
+    --accent-bg: rgba(232,74,74,0.08);
+    --accent-border: rgba(232,74,74,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--off-white);
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
+  }
+
+  /* ===== PAGE SYSTEM ===== */
+  .pages-wrapper { position: relative; overflow: visible; min-height: 100vh; }
+  .page {
+    position: relative;
+    opacity: 1; pointer-events: auto;
+    transform: none;
+    overflow: visible;
+    scroll-margin-top: 84px;
+  }
+  .page.active { opacity: 1; pointer-events: auto; transform: none; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 18px; left: 50%; right: auto;
+    transform: translateX(-50%);
+    z-index: 200;
+    width: min(1120px, calc(100% - 32px));
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    padding: 10px 14px;
+    background: rgba(8,13,20,0.48);
+    backdrop-filter: blur(18px) saturate(135%);
+    border: 1px solid rgba(221,228,232,0.12);
+    border-radius: 999px;
+    box-shadow: 0 18px 54px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .nav-logo { height: 34px; filter: drop-shadow(0 0 8px rgba(69,195,210,0.3)); cursor: pointer; flex-shrink: 0; }
+  .nav-logo-button { display: inline-flex; align-items: center; border: 0; background: transparent; padding: 0; cursor: pointer; }
+  .nav-back {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 999px;
+    transition: color 0.3s, background 0.3s;
+  }
+  .nav-back:hover { color: var(--off-white); background: rgba(255,255,255,0.06); }
+  .nav-links {
+    display: flex; gap: 4px; list-style: none;
+    align-items: center; justify-content: center; flex: 1;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.3s, background 0.3s;
+    padding: 8px 13px; border-radius: 999px; cursor: pointer;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active-page { color: var(--accent); background: var(--accent-bg); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: 999px; padding: 9px 18px; cursor: pointer;
+    transition: background 0.3s, transform 0.2s, border-color 0.3s;
+    text-decoration: none; white-space: nowrap;
+  }
+  .nav-cta:hover { background: rgba(232,74,74,0.18); border-color: rgba(232,74,74,0.55); transform: translateY(-1px); }
+
+  /* HAMBURGER */
+  .nav-hamburger {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; width: 40px; height: 40px; cursor: pointer;
+    background: rgba(232,74,74,0.08); border: 1px solid rgba(232,74,74,0.28);
+    padding: 8px; border-radius: 999px; transition: border-color 0.3s;
+  }
+  .nav-hamburger:hover { border-color: rgba(232,74,74,0.7); }
+  .nav-hamburger span { display: block; width: 20px; height: 2px; background: var(--accent); border-radius: 1px; transition: all 0.3s; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-mobile-menu {
+    display: none; position: fixed; top: 78px; left: 16px; right: 16px;
+    background: rgba(6,12,20,0.92); backdrop-filter: blur(16px);
+    border: 1px solid rgba(232,74,74,0.18); border-radius: 18px;
+    padding: 12px 18px 18px; z-index: 199; flex-direction: column; gap: 0;
+    box-shadow: 0 24px 54px rgba(0,0,0,0.34);
+  }
+  .nav-mobile-menu.open { display: flex; }
+  .nav-mobile-menu a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 15px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    padding: 14px 0; border-bottom: 1px solid rgba(232,74,74,0.1); transition: color 0.3s; cursor: pointer;
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+  .nav-mobile-menu a:hover { color: var(--accent); }
+  .nav-mobile-menu .nav-cta-mobile {
+    margin-top: 20px; display: block; text-align: center;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    color: #fff; background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    border: none; padding: 14px 24px; cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); text-decoration: none;
+  }
+
+  /* ===== PAGE DOTS ===== */
+  .page-dots {
+    display: none;
+  }
+  .page-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(232,74,74,0.25); cursor: pointer;
+    transition: all 0.3s; border: 1px solid rgba(232,74,74,0.3); padding: 0;
+  }
+  .page-dot.active { background: var(--accent); transform: scale(1.3); border-color: var(--accent); }
+
+  /* ===== SHARED SECTION ELEMENTS ===== */
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    text-align: center;
+  }
+  .section-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  .section-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-size: clamp(44px, 4.5vw, 72px); font-weight: 900;
+    text-transform: uppercase; line-height: 0.92; letter-spacing: -1px;
+    color: var(--off-white); margin-bottom: 20px;
+    text-align: center;
+  }
+  .accent-line { color: var(--accent); display: block; text-align: center; }
+  .section-desc {
+    font-size: 15px; font-weight: 300; color: rgba(200,215,230,0.7);
+    line-height: 1.7; margin-bottom: 36px; max-width: 480px;
+  }
+  .btn-accent {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: #fff; background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    padding: 14px 36px; clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.3s; cursor: pointer; text-decoration: none; border: none;
+  }
+  .btn-accent:hover { background: linear-gradient(135deg, #cc3333, #f06060); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,74,74,0.35); }
+  .btn-ghost-accent {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+    font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--accent); background: transparent;
+    border: 1px solid rgba(232,74,74,0.4); padding: 14px 36px;
+    transition: all 0.3s; cursor: pointer; text-decoration: none;
+  }
+  .btn-ghost-accent:hover { border-color: var(--accent); background: rgba(232,74,74,0.08); transform: translateY(-2px); }
+
+  /* Service cards */
+  .service-card {
+    padding: 22px 18px; position: relative;
+    border: 1px solid rgba(221,228,232,0.12); border-radius: 18px;
+    background: rgba(35,6,6,0.30);
+    backdrop-filter: blur(18px) saturate(135%);
+    box-shadow: 0 18px 54px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  }
+  .service-card:hover { border-color: rgba(232,74,74,0.45); transform: translateY(-2px); }
+  .service-card-icon { width: 48px; height: 48px; display: block; margin-bottom: 10px; object-fit: cover; border-radius: 14px; }
+  .service-card h4 {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--off-white); margin-bottom: 6px;
+  }
+  .service-card p { font-size: 12px; font-weight: 300; color: rgba(180,200,220,0.65); line-height: 1.6; }
+  .stag {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 3px 8px; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border);
+  }
+  .stags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+
+  /* Process cards */
+  .process-step {
+    min-height: 165px; padding: 22px 18px; position: relative;
+    background: rgba(8,13,20,0.34); border: 1px solid rgba(221,228,232,0.12); border-radius: 18px;
+    backdrop-filter: blur(18px) saturate(135%);
+    box-shadow: 0 18px 54px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: background 0.3s, border-color 0.3s, transform 0.2s;
+  }
+  .process-step:hover { border-color: rgba(232,74,74,0.36); transform: translateY(-2px); }
+  .step-num { font-family: 'Barlow Condensed', sans-serif; font-size: 34px; font-weight: 900; color: rgba(232,74,74,0.12); line-height: 1; margin-bottom: 8px; }
+  .process-step h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px; }
+  .process-step p { font-size: 12px; font-weight: 300; color: rgba(200,215,230,0.7); line-height: 1.6; }
+
+  /* Gallery cards */
+  .gallery-card {
+    padding: 22px 18px; position: relative;
+    border: 1px solid rgba(221,228,232,0.12); border-radius: 18px;
+    background: rgba(35,6,6,0.30);
+    backdrop-filter: blur(18px) saturate(135%);
+    box-shadow: 0 18px 54px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .gallery-media {
+    width: 100%; aspect-ratio: 16 / 9; margin-bottom: 14px;
+    border: 1px solid rgba(221,228,232,0.12); border-radius: 14px;
+    overflow: hidden; background: rgba(0,0,0,0.36);
+  }
+  .gallery-media iframe, .gallery-media img { width: 100%; height: 100%; display: block; border: 0; }
+  .gallery-media img { object-fit: contain; object-position: center; }
+  .gallery-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--off-white); margin-bottom: 6px; }
+  .gallery-card p { font-size: 12px; font-weight: 300; color: rgba(180,200,220,0.65); line-height: 1.6; flex: 1; min-height: 38px; }
+
+  /* Contact form */
+  .contact-form {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .contact-form label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .contact-form label.full { grid-column: 1 / -1; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 400;
+    color: var(--off-white); background: rgba(8,13,20,0.48);
+    border: 1px solid rgba(221,228,232,0.14); border-radius: 10px;
+    padding: 12px 14px; outline: none; transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: rgba(232,74,74,0.5); }
+  .contact-form textarea { resize: vertical; min-height: 110px; }
+  .contact-form select option { background: #0d1b2a; }
+  .contact-form button { grid-column: 1 / -1; }
+
+  /* Contact socials */
+  .contact-socials { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
+  .contact-social-label {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 5px; text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; gap: 10px; width: 100%;
+  }
+  .contact-social-label::after { content: ''; flex: 1; height: 1px; background: rgba(69,195,210,0.2); max-width: 60px; }
+  .contact-social-link {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.3s;
+  }
+  .contact-social-link:hover { color: var(--off-white); }
+  .contact-social-icon { width: 20px; height: 20px; object-fit: contain; opacity: 0.6; transition: opacity 0.3s; }
+  .contact-social-link:hover .contact-social-icon { opacity: 1; }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Footer */
+  .site-footer {
+    padding: 22px 48px; background: rgba(4,8,14,0.72);
+    border-top: 1px solid rgba(221,228,232,0.08);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px;
+    backdrop-filter: blur(12px);
+  }
+  .site-footer-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--off-white); }
+  .site-footer-text { font-size: 13px; font-weight: 300; color: var(--muted); letter-spacing: 0.5px; }
+
+  /* ===== PAGE 1: HERO ===== */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; flex-direction: column;
+    align-items: stretch; overflow: hidden; padding-top: 84px;
+  }
+  .hero-main { flex: 1; display: flex; align-items: center; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('../assets/fondo_hexagonal.jpg');
+    background-size: cover; background-position: center;
+    transform: scale(1.05); animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+  @keyframes slowZoom { from { transform: scale(1.05); } to { transform: scale(1.12); } }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(25,4,4,0.92) 0%, rgba(40,6,6,0.75) 30%, rgba(40,6,6,0.75) 70%, rgba(20,3,3,0.92) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2; max-width: 800px; margin: 0 auto;
+    padding: 0 48px; display: grid; grid-template-columns: 1.1fr 0.9fr;
+    gap: 32px; align-items: center; width: 100%;
+  }
+  .hero-text .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .hero-text .eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .hero-text h1 {
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-size: clamp(52px, 6vw, 88px); font-weight: 900; line-height: 0.92;
+    text-transform: uppercase; letter-spacing: -1px; color: var(--off-white); margin-bottom: 28px;
+  }
+  .hero-text h1 span { color: var(--accent); display: block; }
+  .hero-tagline { font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.7; color: var(--muted); max-width: 420px; margin-bottom: 40px; }
+  .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-image-wrap { position: relative; display: flex; justify-content: center; align-items: center; }
+  .hero-image-accent {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    right: -30px;
+    top: 10%;
+    height: 80%;
+    opacity: 0.5;
+  }
+  .hero-mockup { width: 100%; max-width: 320px; opacity: 0.7; filter: drop-shadow(0 26px 44px rgba(0,0,0,0.66)); animation: floatY 6s ease-in-out infinite; }
+  @keyframes floatY { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+
+  /* ===== PAGES 2, 3: SERVICIOS & GALERÍA ===== */
+  .page-section {
+    min-height: 100vh; position: relative; padding-top: 84px;
+    display: flex; flex-direction: column;
+    background-image: url('../assets/fondo_hexagonal.jpg');
+    background-size: cover; background-position: center;
+  }
+  .page-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(30,4,4,0.82) 0%, rgba(50,8,8,0.72) 28%, rgba(50,8,8,0.72) 72%, rgba(25,3,3,0.82) 100%);
+    pointer-events: none; z-index: 0;
+  }
+  .section-content {
+    flex: 1; position: relative; z-index: 1;
+    padding: 60px 56px 40px;
+    display: flex; align-items: flex-start; justify-content: center;
+    overflow: hidden;
+  }
+  .section-inner { position: relative; z-index: 2; width: 100%; max-width: 760px; }
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; }
+
+  /* ===== PAGE 4: PROCESO ===== */
+  .proceso-page {
+    min-height: 100vh; position: relative; padding-top: 84px; display: flex; flex-direction: column;
+  }
+  .proceso-bg { position: absolute; inset: 0; background-image: url('../assets/fondo_hexagonal.jpg'); background-size: cover; background-position: center; }
+  .proceso-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(30,4,4,0.88) 0%, rgba(50,8,8,0.80) 28%, rgba(50,8,8,0.80) 72%, rgba(25,3,3,0.88) 100%);
+  }
+  .proceso-content {
+    position: relative; z-index: 2; flex: 1;
+    max-width: 700px; margin: 0 auto;
+    padding: 60px 0 40px;
+    width: min(calc(100% - 112px), 700px);
+    display: flex; flex-direction: column;
+  }
+  .proceso-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 5px; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 10px;
+    text-align: center;
+  }
+  .proceso-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  .proceso-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+  .proceso-title {
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 5vw, 72px); font-weight: 900; text-transform: uppercase;
+    line-height: 0.95; letter-spacing: -1px; color: var(--off-white); margin-bottom: 32px;
+    text-align: center;
+  }
+  .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; border: 0; width: 100%; }
+  .proceso-content .process-step h4 { color: var(--accent); }
+  .proceso-content .process-step { min-height: 195px; }
+  .proceso-content .step-num { color: rgba(232,74,74,0.18); }
+  .proceso-content .process-step p { color: rgba(200,215,230,0.7); }
+  .proceso-content .process-step:hover { border-color: rgba(232,74,74,0.36); }
+
+  /* ===== PAGE 5: CONTACTO ===== */
+  .final-page {
+    min-height: 100vh; position: relative; padding-top: 84px;
+    display: flex; flex-direction: column;
+  }
+  .final-bg { position: absolute; inset: 0; background-image: url('../assets/fondo_hexagonal.jpg'); background-size: cover; background-position: center; }
+  .final-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(25,4,4,0.93) 0%, rgba(40,6,6,0.88) 30%, rgba(40,6,6,0.88) 70%, rgba(25,4,4,0.93) 100%); }
+  .final-content { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .contact-section { position: relative; padding: 80px 48px 72px; }
+  .contact-inner { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+  .contact-inner h2 {
+    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 5vw, 64px); font-weight: 900; text-transform: uppercase;
+    line-height: 0.92; letter-spacing: -1px; color: var(--off-white);
+    text-align: center;
+  }
+  .contact-inner h2 span { color: var(--accent); display: block; text-align: center; }
+  .contact-inner > p { font-size: 15px; font-weight: 300; color: var(--muted); text-align: center; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { top: 14px; width: calc(100% - 24px); padding: 10px 12px; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero-content { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+    .hero-image-wrap { display: none; }
+    .section-content { padding: 60px 24px 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; width: min(100%, 520px); }
+    .proceso-content { width: calc(100% - 48px); padding: 40px 0; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .contact-section { padding: 40px 24px; }
+    .contact-form { grid-template-columns: 1fr; }
+    .page-dots { display: none; }
+    .site-footer { padding: 24px; flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .process-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="/" class="nav-back" aria-label="Volver al inicio">← Inicio</a>
+  <ul class="nav-links">
+    <li><a href="#hero" data-page="0">Inicio</a></li>
+    <li><a href="#servicios" data-page="1">Servicios</a></li>
+    <li><a href="#galeria" data-page="2">Galería</a></li>
+    <li><a href="#proceso" data-page="3">Proceso</a></li>
+    <li><a href="#contacto" data-page="4">Contacto</a></li>
+  </ul>
+  <a href="#contacto" data-page="4" class="nav-cta" style="cursor:pointer;">WhatsApp directo</a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="#hero" data-page="0">Inicio</a>
+  <a href="#servicios" data-page="1">Servicios</a>
+  <a href="#galeria" data-page="2">Galería</a>
+  <a href="#proceso" data-page="3">Proceso</a>
+  <a href="#contacto" data-page="4">Contacto</a>
+  <a href="#contacto" data-page="4" class="nav-cta-mobile">WhatsApp directo</a>
+</div>
+
+<div class="page-dots" id="page-dots">
+  <button class="page-dot active" type="button" onclick="goToPage(0)" title="Inicio" aria-label="Ir a Inicio"></button>
+  <button class="page-dot" type="button" onclick="goToPage(1)" title="Servicios" aria-label="Ir a Servicios"></button>
+  <button class="page-dot" type="button" onclick="goToPage(2)" title="Galería" aria-label="Ir a Galería"></button>
+  <button class="page-dot" type="button" onclick="goToPage(3)" title="Proceso" aria-label="Ir a Proceso"></button>
+  <button class="page-dot" type="button" onclick="goToPage(4)" title="Contacto" aria-label="Ir a Contacto"></button>
+</div>
+
+<div class="pages-wrapper">
+
+  <!-- PAGE 0: HERO -->
+  <div class="page active" id="page-0">
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-main">
+        <div class="hero-content">
+          <div class="hero-text reveal">
+            <div class="eyebrow">Wolf Estudios · Artistas</div>
+            <h1>Tu imagen,<span>tu identidad.</span></h1>
+            <p class="hero-tagline">Diseño visual y contenido digital hecho para músicos, artistas y creadores que quieren destacar.</p>
+            <div class="hero-cta-group">
+              <button onclick="goToPage(1)" class="btn-accent">Ver servicios</button>
+              <button onclick="goToPage(4)" class="btn-ghost-accent">Hablemos</button>
+            </div>
+          </div>
+          <div class="hero-image-wrap reveal">
+            <img class="hero-mockup" src="../assets/logo_wolf_uruguay.png" alt="Wolf Estudios para Artistas" decoding="async">
+            <div class="hero-image-accent"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PAGE 1: SERVICIOS -->
+  <div class="page" id="page-1">
+    <div class="page-section">
+      <div class="section-content">
+        <div class="section-inner">
+          <div class="section-eyebrow reveal">Servicios</div>
+          <h2 class="section-title reveal">Lo que <span class="accent-line">hacemos</span></h2>
+          <div class="services-grid">
+            <div class="service-card reveal">
+              <img class="service-card-icon" src="../assets/iconos_servicios/identidad_artista.png" alt="Identidad de artista" loading="lazy" decoding="async">
+              <h4>Identidad de artista</h4>
+              <p>Logo, paleta de colores y estilo visual diseñados para potenciar tu personalidad como artista.</p>
+              <div class="stags"><span class="stag">Logo</span><span class="stag">Branding</span><span class="stag">Brand Kit</span></div>
+            </div>
+            <div class="service-card reveal">
+              <img class="service-card-icon" src="../assets/iconos_servicios/portadas.png" alt="Portadas" loading="lazy" decoding="async">
+              <h4>Portadas</h4>
+              <p>Diseño de covers para Spotify, YouTube, eventos y material promocional.</p>
+              <div class="stags"><span class="stag">Spotify</span><span class="stag">YouTube</span><span class="stag">Eventos</span></div>
+            </div>
+            <div class="service-card reveal">
+              <img class="service-card-icon" src="../assets/iconos_servicios/videos.png" alt="Videos y Reels" loading="lazy" decoding="async">
+              <h4>Videos y Reels</h4>
+              <p>Producción y edición de videos musicales, clips cortos y contenido para redes.</p>
+              <div class="stags"><span class="stag">Video</span><span class="stag">Reels</span><span class="stag">Edición</span></div>
+            </div>
+            <div class="service-card reveal">
+              <img class="service-card-icon" src="../assets/iconos_servicios/redes.png" alt="Presencia en redes" loading="lazy" decoding="async">
+              <h4>Presencia en redes</h4>
+              <p>Estrategia visual para Instagram y TikTok: feed coherente, stories y highlights.</p>
+              <div class="stags"><span class="stag">Instagram</span><span class="stag">TikTok</span><span class="stag">Feed</span></div>
+            </div>
+            <div class="service-card reveal">
+              <img class="service-card-icon" src="../assets/iconos_servicios/motion_graphics.png" alt="Motion Graphics" loading="lazy" decoding="async">
+              <h4>Motion Graphics</h4>
+              <p>Animaciones, intros, lyric videos y piezas en movimiento para que tu contenido se sienta vivo.</p>
+              <div class="stags"><span class="stag">Motion</span><span class="stag">After Effects</span><span class="stag">Lyric Video</span></div>
+            </div>
+          </div>
+          <div style="text-align:center; margin-top:8px;">
+            <button onclick="goToPage(2)" class="btn-accent">Ver galería</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: GALERÍA -->
+  <div class="page" id="page-2">
+    <div class="page-section">
+      <div class="section-content">
+        <div class="section-inner" style="max-width:800px;">
+          <div class="section-eyebrow reveal">Galería</div>
+          <h2 class="section-title reveal">Trabajos <span class="accent-line">recientes</span></h2>
+          <div class="gallery-grid">
+            <div class="gallery-card reveal">
+              <div class="gallery-media">
+                <iframe src="https://www.youtube.com/embed/mic9byKDPgg?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Identidad visual Wolf Estudios"></iframe>
+              </div>
+              <h4>Identidad visual</h4>
+              <p>Branding completo para artistas emergentes.</p>
+              <div class="stags"><span class="stag">Branding</span><span class="stag">Logo</span></div>
+            </div>
+            <div class="gallery-card reveal">
+              <div class="gallery-media">
+                <iframe src="https://www.youtube.com/embed/-cbOfz7gmOI?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Motion Graphics Wolf Estudios"></iframe>
+              </div>
+              <h4>Motion Graphics</h4>
+              <p>Animación, ritmo y movimiento para piezas más dinámicas.</p>
+              <div class="stags"><span class="stag">Motion</span><span class="stag">Animación</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: PROCESO -->
+  <div class="page" id="page-3">
+    <div class="proceso-page">
+      <div class="proceso-bg"></div>
+      <div class="proceso-overlay"></div>
+      <div class="proceso-content">
+        <div class="proceso-eyebrow reveal">Cómo trabajamos</div>
+        <h2 class="proceso-title reveal">El proceso</h2>
+        <div class="process-grid">
+          <div class="process-step reveal">
+            <div class="step-num">01</div>
+            <h4>Consulta</h4>
+            <p>Nos contás tu proyecto, tu estilo y lo que querés transmitir. Sin formularios, por WhatsApp.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="step-num">02</div>
+            <h4>Propuesta</h4>
+            <p>Te enviamos un brief visual con referencias, paleta y dirección creativa para tu aprobación.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="step-num">03</div>
+            <h4>Producción</h4>
+            <p>Diseñamos y producimos todas las piezas. Revisiones incluidas hasta que quede perfecto.</p>
+          </div>
+          <div class="process-step reveal">
+            <div class="step-num">04</div>
+            <h4>Entrega</h4>
+            <p>Recibís todos los archivos listos para usar: redes, streaming, imprenta o web.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 4: CONTACTO -->
+  <div class="page" id="page-4">
+    <div class="final-page">
+      <div class="final-bg"></div>
+      <div class="final-overlay"></div>
+      <div class="final-content">
+        <section class="contact-section">
+          <div class="contact-inner reveal">
+            <h2>Hablemos de<span>tu proyecto</span></h2>
+            <p>Te respondemos en menos de 24hs por WhatsApp o email.</p>
+            <a href="#" data-whatsapp-link target="_blank" rel="noopener" class="btn-accent" style="display:inline-block;text-align:center;">Escribir por WhatsApp</a>
+            <div style="border-top: 1px solid rgba(221,228,232,0.1); padding-top: 20px;">
+              <p style="font-size:13px; color: var(--muted); margin-bottom: 18px;">O dejanos tu consulta:</p>
+              <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="f607b581-b804-4f4c-8457-c942ba673e28">
+                <input type="hidden" name="subject" value="Nuevo proyecto Artistas - Wolf Estudios">
+                <input type="hidden" name="from_name" value="Wolf Estudios Web – Artistas">
+                <input type="hidden" name="redirect" value="https://wolfestudios.uy/gracias.html">
+                <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+                <label for="name-a">Nombre
+                  <input type="text" id="name-a" name="name" autocomplete="name" required placeholder="Tu nombre">
+                </label>
+                <label for="email-a">Email
+                  <input type="email" id="email-a" name="email" autocomplete="email" required placeholder="tu@email.com">
+                </label>
+                <label class="full" for="servicio-a">Servicio
+                  <select id="servicio-a" name="servicio" required>
+                    <option value="">Seleccioná un servicio...</option>
+                    <option value="Identidad de artista">Identidad de artista</option>
+                    <option value="Portadas">Portadas</option>
+                    <option value="Videos y Reels">Videos y Reels</option>
+                    <option value="Presencia en redes">Presencia en redes</option>
+                    <option value="Motion Graphics">Motion Graphics</option>
+                  </select>
+                </label>
+                <label class="full" for="message-a">Mensaje
+                  <textarea id="message-a" name="message" required placeholder="Contanos sobre tu proyecto..."></textarea>
+                </label>
+                <button type="submit" class="btn-accent">Enviar consulta</button>
+              </form>
+            </div>
+            <div class="contact-socials">
+              <div class="contact-social-label">Disponible en:</div>
+              <a href="#" data-whatsapp-link target="_blank" rel="noopener" class="contact-social-link">
+                <img class="contact-social-icon" src="../assets/icon_whatsapp_plata.png" alt="WhatsApp" loading="lazy" decoding="async">WhatsApp
+              </a>
+              <a href="https://www.instagram.com/wolfestudiosuy/?hl=es-la" target="_blank" rel="noopener" class="contact-social-link">
+                <img class="contact-social-icon" src="../assets/icon_instagram_plata.png" alt="Instagram" loading="lazy" decoding="async">Instagram
+              </a>
+              <a href="https://www.youtube.com/@wolfestudiosuy" target="_blank" rel="noopener" class="contact-social-link">
+                <img class="contact-social-icon" src="../assets/icon_youtube_plata.png" alt="YouTube" loading="lazy" decoding="async">YouTube
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="site-footer">
+        <span class="site-footer-brand">Wolf Estudios</span>
+        <span class="site-footer-text">© 2026 Wolf Estudios · Todos los derechos reservados · Montevideo, Uruguay</span>
+      </footer>
+    </div>
+  </div>
+
+</div><!-- /pages-wrapper -->
+
+<script>
+  var currentPage = 0;
+  var totalPages = 5;
+  var pageHashes = ['hero','servicios','galeria','proceso','contacto'];
+  var whatsappParts = ['598','98','703','340'];
+  var whatsappMessage = 'Hola Wolf Estudios, quiero consultar por servicios para artistas...';
+
+  function setupWhatsappLinks() {
+    var href = 'https://wa.me/' + whatsappParts.join('') + '?text=' + encodeURIComponent(whatsappMessage);
+    document.querySelectorAll('[data-whatsapp-link]').forEach(function(link) { link.href = href; });
+  }
+
+  function pageFromHash(hash) {
+    var cleanHash = (hash || '').replace('#','');
+    var index = pageHashes.indexOf(cleanHash);
+    return index >= 0 ? index : 0;
+  }
+
+  function goToPage(n) {
+    if (n < 0 || n >= totalPages) return;
+    currentPage = n;
+    var p = document.getElementById('page-' + currentPage);
+    if (p) p.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', '#' + pageHashes[currentPage]);
+    updateUI();
+    document.getElementById('nav-hamburger').classList.remove('open');
+    document.getElementById('nav-mobile-menu').classList.remove('open');
+  }
+
+  function updateUI() {
+    document.querySelectorAll('.page-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === currentPage);
+      d.setAttribute('aria-current', i === currentPage ? 'page' : 'false');
+    });
+    document.querySelectorAll('a[data-page]').forEach(function(a) {
+      var isCurrent = parseInt(a.dataset.page) === currentPage;
+      a.classList.toggle('active-page', isCurrent);
+      if (isCurrent) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  }
+
+  document.querySelectorAll('a[data-page]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      goToPage(parseInt(link.dataset.page));
+    });
+  });
+
+  function setupReveals() {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function(el) { observer.observe(el); });
+  }
+
+  function setupSectionObserver() {
+    var sections = Array.from(document.querySelectorAll('.page'));
+    if (!('IntersectionObserver' in window)) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var index = sections.indexOf(entry.target);
+        if (index >= 0) {
+          currentPage = index;
+          updateUI();
+        }
+      });
+    }, { threshold: 0.45 });
+    sections.forEach(function(section) { observer.observe(section); });
+  }
+
+  function setupInitialHash() {
+    if (!location.hash) {
+      updateUI();
+      return;
+    }
+    setTimeout(function() {
+      goToPage(pageFromHash(location.hash));
+    }, 100);
+  }
+
+  window.addEventListener('load', function() {
+    setupWhatsappLinks();
+    setupReveals();
+    setupSectionObserver();
+    setupInitialHash();
+  });
+
+  document.getElementById('nav-hamburger').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('nav-mobile-menu').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
