@@ -490,10 +490,9 @@
   <ul class="nav-links">
     <li><a href="#servicios" data-page="0">Servicios</a></li>
     <li><a href="#galeria" data-page="1">Galería</a></li>
-    <li><a href="#proceso" data-page="2">Proceso</a></li>
-    <li><a href="#contacto" data-page="3">Contacto</a></li>
+    <li><a href="#contacto" data-page="2">Contacto</a></li>
   </ul>
-  <a href="#contacto" data-page="3" class="nav-cta" style="cursor:pointer;">WhatsApp directo</a>
+  <a href="#contacto" data-page="2" class="nav-cta" style="cursor:pointer;">WhatsApp directo</a>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
@@ -502,16 +501,14 @@
 <div class="nav-mobile-menu" id="nav-mobile-menu">
   <a href="#servicios" data-page="0">Servicios</a>
   <a href="#galeria" data-page="1">Galería</a>
-  <a href="#proceso" data-page="2">Proceso</a>
-  <a href="#contacto" data-page="3">Contacto</a>
-  <a href="#contacto" data-page="3" class="nav-cta-mobile">WhatsApp directo</a>
+  <a href="#contacto" data-page="2">Contacto</a>
+  <a href="#contacto" data-page="2" class="nav-cta-mobile">WhatsApp directo</a>
 </div>
 
 <div class="page-dots" id="page-dots">
   <button class="page-dot active" type="button" onclick="goToPage(0)" title="Servicios" aria-label="Ir a Servicios"></button>
   <button class="page-dot" type="button" onclick="goToPage(1)" title="Galería" aria-label="Ir a Galería"></button>
-  <button class="page-dot" type="button" onclick="goToPage(2)" title="Proceso" aria-label="Ir a Proceso"></button>
-  <button class="page-dot" type="button" onclick="goToPage(3)" title="Contacto" aria-label="Ir a Contacto"></button>
+  <button class="page-dot" type="button" onclick="goToPage(2)" title="Contacto" aria-label="Ir a Contacto"></button>
 </div>
 
 <div class="pages-wrapper">
@@ -587,42 +584,8 @@
     </div>
   </div>
 
-  <!-- PAGE 2: PROCESO -->
+  <!-- PAGE 2: CONTACTO -->
   <div class="page" id="page-2">
-    <div class="proceso-page">
-      <div class="proceso-bg"></div>
-      <div class="proceso-overlay"></div>
-      <div class="proceso-content">
-        <div class="proceso-eyebrow reveal">Cómo trabajamos</div>
-        <h2 class="proceso-title reveal">El proceso</h2>
-        <div class="process-grid">
-          <div class="process-step reveal">
-            <div class="step-num">01</div>
-            <h4>Consulta</h4>
-            <p>Nos contás tu proyecto, tu estilo y lo que querés transmitir. Sin formularios, por WhatsApp.</p>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-num">02</div>
-            <h4>Propuesta</h4>
-            <p>Te enviamos un brief visual con referencias, paleta y dirección creativa para tu aprobación.</p>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-num">03</div>
-            <h4>Producción</h4>
-            <p>Diseñamos y producimos todas las piezas. Revisiones incluidas hasta que quede perfecto.</p>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-num">04</div>
-            <h4>Entrega</h4>
-            <p>Recibís todos los archivos listos para usar: redes, streaming, imprenta o web.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE 3: CONTACTO -->
-  <div class="page" id="page-3">
     <div class="final-page">
       <div class="final-bg"></div>
       <div class="final-overlay"></div>
@@ -687,8 +650,8 @@
 
 <script>
   var currentPage = 0;
-  var totalPages = 4;
-  var pageHashes = ['servicios','galeria','proceso','contacto'];
+  var totalPages = 3;
+  var pageHashes = ['servicios','galeria','contacto'];
   var whatsappParts = ['598','98','703','340'];
   var whatsappMessage = 'Hola Wolf Estudios, quiero consultar por servicios para artistas...';
 
