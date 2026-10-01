@@ -1,7 +1,15 @@
 {
-  "rewrites": [
-    { "source": "/artistas", "destination": "/artistas/index.html" },
-    { "source": "/empresas", "destination": "/empresas/index.html" }
+  "redirects": [
+    {
+      "source": "/artistas",
+      "destination": "/#artistas",
+      "permanent": true
+    },
+    {
+      "source": "/empresas",
+      "destination": "/#negocios",
+      "permanent": true
+    }
   ],
   "headers": [
     {
