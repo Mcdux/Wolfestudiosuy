@@ -2,12 +2,12 @@
   "redirects": [
     {
       "source": "/artistas",
-      "destination": "/#artistas",
+      "destination": "/#servicios",
       "permanent": true
     },
     {
       "source": "/empresas",
-      "destination": "/#negocios",
+      "destination": "/#servicios",
       "permanent": true
     }
   ],

@@ -485,6 +485,11 @@
     .process-grid { grid-template-columns: 1fr; }
   }
 
+  /* ===== SERVICIOS (8 tarjetas juntas) ===== */
+  .services-all { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 1100px) { .services-all { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .services-all { grid-template-columns: 1fr; } }
+
   /* ===== TEMAS POR SECCIÓN ===== */
   .theme-artistas { --accent:#e84a4a; --accent-dark:#b52222; --accent-light:#f06060; --accent-rgb:232,74,74;
     --accent-bg:rgba(232,74,74,0.08); --accent-border:rgba(232,74,74,0.2); }
@@ -495,104 +500,83 @@
 <body>
 
 <nav id="main-nav">
-  <a href="#artistas" data-page="0" class="nav-logo-link" aria-label="Wolf Estudios"><img class="nav-logo" src="assets/logo_plata.png" alt="Wolf Estudios - Diseño Gráfico Uruguay"></a>
+  <a href="#servicios" data-page="0" class="nav-logo-link" aria-label="Wolf Estudios"><img class="nav-logo" src="assets/logo_plata.png" alt="Wolf Estudios - Diseño Gráfico Uruguay"></a>
   <ul class="nav-links">
-    <li><a href="#artistas" data-page="0">Artistas</a></li>
-    <li><a href="#negocios" data-page="1">Negocios</a></li>
-    <li><a href="#galeria" data-page="2">Galería</a></li>
-    <li><a href="#contacto" data-page="3">Contacto</a></li>
+    <li><a href="#servicios" data-page="0">Servicios</a></li>
+    <li><a href="#galeria" data-page="1">Galería</a></li>
+    <li><a href="#contacto" data-page="2">Contacto</a></li>
   </ul>
-  <a href="#contacto" data-page="3" class="nav-cta" style="cursor:pointer;">WhatsApp directo</a>
+  <a href="#contacto" data-page="2" class="nav-cta" style="cursor:pointer;">WhatsApp directo</a>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="nav-mobile-menu" id="nav-mobile-menu">
-  <a href="#artistas" data-page="0">Artistas</a>
-  <a href="#negocios" data-page="1">Negocios</a>
-  <a href="#galeria" data-page="2">Galería</a>
-  <a href="#contacto" data-page="3">Contacto</a>
-  <a href="#contacto" data-page="3" class="nav-cta-mobile">WhatsApp directo</a>
+  <a href="#servicios" data-page="0">Servicios</a>
+  <a href="#galeria" data-page="1">Galería</a>
+  <a href="#contacto" data-page="2">Contacto</a>
+  <a href="#contacto" data-page="2" class="nav-cta-mobile">WhatsApp directo</a>
 </div>
 
 <div class="page-dots" id="page-dots">
-  <button class="page-dot active" type="button" onclick="goToPage(0)" title="Artistas" aria-label="Ir a Artistas"></button>
-  <button class="page-dot" type="button" onclick="goToPage(1)" title="Negocios" aria-label="Ir a Negocios"></button>
-  <button class="page-dot" type="button" onclick="goToPage(2)" title="Galería" aria-label="Ir a Galería"></button>
-  <button class="page-dot" type="button" onclick="goToPage(3)" title="Contacto" aria-label="Ir a Contacto"></button>
+  <button class="page-dot active" type="button" onclick="goToPage(0)" title="Servicios" aria-label="Ir a Servicios"></button>
+  <button class="page-dot" type="button" onclick="goToPage(1)" title="Galería" aria-label="Ir a Galería"></button>
+  <button class="page-dot" type="button" onclick="goToPage(2)" title="Contacto" aria-label="Ir a Contacto"></button>
 </div>
 
 <div class="pages-wrapper">
 
-  <!-- PAGE 0: PARA ARTISTAS -->
-  <div class="page theme-artistas" id="page-0">
+  <!-- PAGE 0: SERVICIOS -->
+  <div class="page" id="page-0">
     <div class="page-section">
       <div class="section-content">
-        <div class="section-inner">
-          <div class="section-eyebrow reveal">Para artistas</div>
-          <h1 class="section-title reveal">Tu imagen, <span class="accent-line">tu identidad</span></h1>
-          <div class="services-grid">
-            <div class="service-card reveal">
+        <div class="section-inner" style="max-width:1120px;">
+          <h1 class="section-title reveal"><span class="accent-line">Servicios</span></h1>
+          <div class="services-grid services-all">
+            <div class="service-card theme-artistas reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/identidad_artista.png" alt="Identidad de artista" loading="lazy" decoding="async">
               <h4>Identidad de artista</h4>
               <p>Logo, paleta de colores y estilo visual diseñados para potenciar tu personalidad como artista.</p>
               <div class="stags"><span class="stag">Logo</span><span class="stag">Branding</span><span class="stag">Brand Kit</span></div>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card theme-artistas reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/portadas.png" alt="Portadas" loading="lazy" decoding="async">
               <h4>Portadas</h4>
               <p>Diseño de covers para Spotify, YouTube, eventos y material promocional.</p>
               <div class="stags"><span class="stag">Spotify</span><span class="stag">YouTube</span><span class="stag">Eventos</span></div>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card theme-artistas reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/videos.png" alt="Videos y Reels" loading="lazy" decoding="async">
               <h4>Videos y Reels</h4>
               <p>Producción y edición de videos musicales, clips cortos y contenido para redes.</p>
               <div class="stags"><span class="stag">Video</span><span class="stag">Reels</span><span class="stag">Edición</span></div>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card theme-artistas reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/motion_graphics.png" alt="Motion Graphics" loading="lazy" decoding="async">
               <h4>Motion Graphics</h4>
               <p>Animaciones, intros, lyric videos y piezas en movimiento para que tu contenido se sienta vivo.</p>
               <div class="stags"><span class="stag">Motion</span><span class="stag">After Effects</span><span class="stag">Lyric Video</span></div>
             </div>
-          </div>
-          <div style="text-align:center; margin-top:8px; padding-bottom:48px;">
-            <button onclick="goToPage(2)" class="btn-accent">Ver galería</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE 1: PARA NEGOCIOS -->
-  <div class="page theme-negocios" id="page-1">
-    <div class="page-section">
-      <div class="section-content">
-        <div class="section-inner">
-          <div class="section-eyebrow reveal">Para negocios</div>
-          <h2 class="section-title reveal">Presencia digital <span class="accent-line">completa</span></h2>
-          <div class="services-grid">
-            <div class="service-card reveal">
+            <div class="service-card theme-negocios reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/web.png" alt="Diseño web" loading="lazy" decoding="async">
               <h4>Diseño web / Landing pages</h4>
               <p>Sitios modernos, rápidos y optimizados para convertir visitantes en clientes.</p>
               <div class="stags"><span class="stag">Web</span><span class="stag">Landing</span><span class="stag">UX</span></div>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card theme-negocios reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/identidad_marca.png" alt="Identidad de marca" loading="lazy" decoding="async">
               <h4>Identidad de marca</h4>
               <p>Logo, paleta, tipografía y guía de estilo para una marca consistente y profesional.</p>
               <div class="stags"><span class="stag">Logo</span><span class="stag">Branding</span><span class="stag">Brand Kit</span></div>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card theme-negocios reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/flyers.png" alt="Flyers y banners" loading="lazy" decoding="async">
               <h4>Flyers y banners</h4>
               <p>Material gráfico para redes, imprenta y publicidad digital listo para usar.</p>
               <div class="stags"><span class="stag">Flyer</span><span class="stag">Banner</span><span class="stag">Social</span></div>
             </div>
-            <div class="service-card reveal">
+            <div class="service-card theme-negocios reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/automatizaciones.png" alt="Automatizaciones" loading="lazy" decoding="async">
               <h4>Automatizaciones</h4>
               <p>CRM, funnels, respuestas automáticas y flujos con IA para que tu negocio trabaje solo.</p>
@@ -600,15 +584,15 @@
             </div>
           </div>
           <div style="text-align:center; margin-top:8px; padding-bottom:48px;">
-            <button onclick="goToPage(2)" class="btn-accent">Ver galería</button>
+            <button onclick="goToPage(1)" class="btn-accent">Ver galería</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE 2: GALERÍA -->
-  <div class="page" id="page-2">
+  <!-- PAGE 1: GALERÍA -->
+  <div class="page" id="page-1">
     <div class="page-section">
       <div class="section-content">
         <div class="section-inner" style="max-width:800px;">
@@ -654,8 +638,8 @@
     </div>
   </div>
 
-  <!-- PAGE 3: CONTACTO -->
-  <div class="page" id="page-3">
+  <!-- PAGE 2: CONTACTO -->
+  <div class="page" id="page-2">
     <div class="final-page">
       <div class="final-bg"></div>
       <div class="final-overlay"></div>
@@ -731,8 +715,8 @@
 
 <script>
   var currentPage = 0;
-  var totalPages = 4;
-  var pageHashes = ['artistas','negocios','galeria','contacto'];
+  var totalPages = 3;
+  var pageHashes = ['servicios','galeria','contacto'];
   var whatsappParts = ['598','98','703','340'];
   var whatsappMessage = 'Hola Wolf Estudios, quiero consultar por sus servicios...';
 
