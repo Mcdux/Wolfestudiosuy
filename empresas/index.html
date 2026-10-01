@@ -471,10 +471,9 @@
   <ul class="nav-links">
     <li><a href="#servicios" data-page="0">Servicios</a></li>
     <li><a href="#galeria" data-page="1">Galería</a></li>
-    <li><a href="#proceso" data-page="2">Proceso</a></li>
-    <li><a href="#contacto" data-page="3">Contacto</a></li>
+    <li><a href="#contacto" data-page="2">Contacto</a></li>
   </ul>
-  <a href="#contacto" data-page="3" class="nav-cta" style="cursor:pointer;">Trabajemos juntos</a>
+  <a href="#contacto" data-page="2" class="nav-cta" style="cursor:pointer;">Trabajemos juntos</a>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
@@ -483,16 +482,14 @@
 <div class="nav-mobile-menu" id="nav-mobile-menu">
   <a href="#servicios" data-page="0">Servicios</a>
   <a href="#galeria" data-page="1">Galería</a>
-  <a href="#proceso" data-page="2">Proceso</a>
-  <a href="#contacto" data-page="3">Contacto</a>
-  <a href="#contacto" data-page="3" class="nav-cta-mobile">Trabajemos juntos</a>
+  <a href="#contacto" data-page="2">Contacto</a>
+  <a href="#contacto" data-page="2" class="nav-cta-mobile">Trabajemos juntos</a>
 </div>
 
 <div class="page-dots" id="page-dots">
   <button class="page-dot active" type="button" onclick="goToPage(0)" title="Servicios" aria-label="Ir a Servicios"></button>
   <button class="page-dot" type="button" onclick="goToPage(1)" title="Galería" aria-label="Ir a Galería"></button>
-  <button class="page-dot" type="button" onclick="goToPage(2)" title="Proceso" aria-label="Ir a Proceso"></button>
-  <button class="page-dot" type="button" onclick="goToPage(3)" title="Contacto" aria-label="Ir a Contacto"></button>
+  <button class="page-dot" type="button" onclick="goToPage(2)" title="Contacto" aria-label="Ir a Contacto"></button>
 </div>
 
 <div class="pages-wrapper">
@@ -568,42 +565,8 @@
     </div>
   </div>
 
-  <!-- PAGE 2: PROCESO -->
+  <!-- PAGE 2: CONTACTO -->
   <div class="page" id="page-2">
-    <div class="proceso-page">
-      <div class="proceso-bg"></div>
-      <div class="proceso-overlay"></div>
-      <div class="proceso-content">
-        <div class="proceso-eyebrow reveal">Cómo trabajamos</div>
-        <h2 class="proceso-title reveal">El proceso</h2>
-        <div class="process-grid">
-          <div class="process-step reveal">
-            <div class="step-num">01</div>
-            <h4>Diagnóstico</h4>
-            <p>Analizamos tu negocio, tu competencia y tus objetivos para entender qué necesitás realmente.</p>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-num">02</div>
-            <h4>Estrategia</h4>
-            <p>Definimos qué servicios tienen más impacto para tu caso y te presentamos un plan claro.</p>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-num">03</div>
-            <h4>Producción</h4>
-            <p>Ejecutamos: diseño, desarrollo o automatizaciones. Con revisiones hasta que quede perfecto.</p>
-          </div>
-          <div class="process-step reveal">
-            <div class="step-num">04</div>
-            <h4>Entrega y soporte</h4>
-            <p>Recibís todo listo para operar, con soporte y ajustes post-entrega incluidos.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE 3: CONTACTO -->
-  <div class="page" id="page-3">
     <div class="final-page">
       <div class="final-bg"></div>
       <div class="final-overlay"></div>
@@ -664,8 +627,8 @@
 
 <script>
   var currentPage = 0;
-  var totalPages = 4;
-  var pageHashes = ['servicios','galeria','proceso','contacto'];
+  var totalPages = 3;
+  var pageHashes = ['servicios','galeria','contacto'];
   var whatsappParts = ['598','98','703','340'];
   var whatsappMessage = 'Hola Wolf Estudios, quiero consultar por servicios para mi negocio...';
 
