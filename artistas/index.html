@@ -488,69 +488,41 @@
 <nav id="main-nav">
   <a href="/" class="nav-back" aria-label="Volver al inicio">← Inicio</a>
   <ul class="nav-links">
-    <li><a href="#hero" data-page="0">Inicio</a></li>
-    <li><a href="#servicios" data-page="1">Servicios</a></li>
-    <li><a href="#galeria" data-page="2">Galería</a></li>
-    <li><a href="#proceso" data-page="3">Proceso</a></li>
-    <li><a href="#contacto" data-page="4">Contacto</a></li>
+    <li><a href="#servicios" data-page="0">Servicios</a></li>
+    <li><a href="#galeria" data-page="1">Galería</a></li>
+    <li><a href="#proceso" data-page="2">Proceso</a></li>
+    <li><a href="#contacto" data-page="3">Contacto</a></li>
   </ul>
-  <a href="#contacto" data-page="4" class="nav-cta" style="cursor:pointer;">WhatsApp directo</a>
+  <a href="#contacto" data-page="3" class="nav-cta" style="cursor:pointer;">WhatsApp directo</a>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="nav-mobile-menu" id="nav-mobile-menu">
-  <a href="#hero" data-page="0">Inicio</a>
-  <a href="#servicios" data-page="1">Servicios</a>
-  <a href="#galeria" data-page="2">Galería</a>
-  <a href="#proceso" data-page="3">Proceso</a>
-  <a href="#contacto" data-page="4">Contacto</a>
-  <a href="#contacto" data-page="4" class="nav-cta-mobile">WhatsApp directo</a>
+  <a href="#servicios" data-page="0">Servicios</a>
+  <a href="#galeria" data-page="1">Galería</a>
+  <a href="#proceso" data-page="2">Proceso</a>
+  <a href="#contacto" data-page="3">Contacto</a>
+  <a href="#contacto" data-page="3" class="nav-cta-mobile">WhatsApp directo</a>
 </div>
 
 <div class="page-dots" id="page-dots">
-  <button class="page-dot active" type="button" onclick="goToPage(0)" title="Inicio" aria-label="Ir a Inicio"></button>
-  <button class="page-dot" type="button" onclick="goToPage(1)" title="Servicios" aria-label="Ir a Servicios"></button>
-  <button class="page-dot" type="button" onclick="goToPage(2)" title="Galería" aria-label="Ir a Galería"></button>
-  <button class="page-dot" type="button" onclick="goToPage(3)" title="Proceso" aria-label="Ir a Proceso"></button>
-  <button class="page-dot" type="button" onclick="goToPage(4)" title="Contacto" aria-label="Ir a Contacto"></button>
+  <button class="page-dot active" type="button" onclick="goToPage(0)" title="Servicios" aria-label="Ir a Servicios"></button>
+  <button class="page-dot" type="button" onclick="goToPage(1)" title="Galería" aria-label="Ir a Galería"></button>
+  <button class="page-dot" type="button" onclick="goToPage(2)" title="Proceso" aria-label="Ir a Proceso"></button>
+  <button class="page-dot" type="button" onclick="goToPage(3)" title="Contacto" aria-label="Ir a Contacto"></button>
 </div>
 
 <div class="pages-wrapper">
 
-  <!-- PAGE 0: HERO -->
+  <!-- PAGE 0: SERVICIOS -->
   <div class="page active" id="page-0">
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-main">
-        <div class="hero-content">
-          <div class="hero-text reveal">
-            <div class="eyebrow">Wolf Estudios · Artistas</div>
-            <h1>Tu imagen,<span>tu identidad.</span></h1>
-            <p class="hero-tagline">Diseño visual y contenido digital hecho para músicos, artistas y creadores que quieren destacar.</p>
-            <div class="hero-cta-group">
-              <button onclick="goToPage(1)" class="btn-accent">Ver servicios</button>
-              <button onclick="goToPage(4)" class="btn-ghost-accent">Hablemos</button>
-            </div>
-          </div>
-          <div class="hero-image-wrap reveal">
-            <img class="hero-mockup" src="../assets/logo_wolf_uruguay.png" alt="Wolf Estudios para Artistas" decoding="async">
-            <div class="hero-image-accent"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- PAGE 1: SERVICIOS -->
-  <div class="page" id="page-1">
     <div class="page-section">
       <div class="section-content">
         <div class="section-inner">
           <div class="section-eyebrow reveal">Servicios</div>
-          <h2 class="section-title reveal">Lo que <span class="accent-line">hacemos</span></h2>
+          <h1 class="section-title reveal">Lo que <span class="accent-line">hacemos</span></h1>
           <div class="services-grid">
             <div class="service-card reveal">
               <img class="service-card-icon" src="../assets/iconos_servicios/identidad_artista.png" alt="Identidad de artista" loading="lazy" decoding="async">
@@ -584,15 +556,15 @@
             </div>
           </div>
           <div style="text-align:center; margin-top:8px; padding-bottom:48px;">
-            <button onclick="goToPage(2)" class="btn-accent">Ver galería</button>
+            <button onclick="goToPage(1)" class="btn-accent">Ver galería</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE 2: GALERÍA -->
-  <div class="page" id="page-2">
+  <!-- PAGE 1: GALERÍA -->
+  <div class="page" id="page-1">
     <div class="page-section">
       <div class="section-content">
         <div class="section-inner" style="max-width:800px;">
@@ -621,8 +593,8 @@
     </div>
   </div>
 
-  <!-- PAGE 3: PROCESO -->
-  <div class="page" id="page-3">
+  <!-- PAGE 2: PROCESO -->
+  <div class="page" id="page-2">
     <div class="proceso-page">
       <div class="proceso-bg"></div>
       <div class="proceso-overlay"></div>
@@ -655,8 +627,8 @@
     </div>
   </div>
 
-  <!-- PAGE 4: CONTACTO -->
-  <div class="page" id="page-4">
+  <!-- PAGE 3: CONTACTO -->
+  <div class="page" id="page-3">
     <div class="final-page">
       <div class="final-bg"></div>
       <div class="final-overlay"></div>
@@ -722,8 +694,8 @@
 
 <script>
   var currentPage = 0;
-  var totalPages = 5;
-  var pageHashes = ['hero','servicios','galeria','proceso','contacto'];
+  var totalPages = 4;
+  var pageHashes = ['servicios','galeria','proceso','contacto'];
   var whatsappParts = ['598','98','703','340'];
   var whatsappMessage = 'Hola Wolf Estudios, quiero consultar por servicios para artistas...';
 
