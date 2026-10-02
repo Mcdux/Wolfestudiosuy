@@ -494,6 +494,24 @@
   }
   @media (max-width: 700px) { .hero-shard, .hero-water { display: none; } }
   @media (prefers-reduced-motion: reduce) { .hero-card-in, .hero-logo, .hero-shard { animation: none; } .hero-water { display: none; } .hero-card, .hero-logo { transition: none; } }
+
+  /* ===== AGUA (imagen con transparencia) ===== */
+  .hero-water-back, .hero-water-front { position: absolute; left: 50%; pointer-events: none; user-select: none; max-width: none; }
+  .hero-water-back { top: 50%; width: 108%; z-index: 0; opacity: .34; mix-blend-mode: screen;
+    filter: saturate(1.3) drop-shadow(0 0 30px rgba(69,195,210,0.35));
+    transform: translate3d(calc(-50% + var(--mx) * 10px), calc(-50% + var(--my) * 7px), 0); transition: transform .35s ease-out;
+    animation: heroWater 13s ease-in-out infinite alternate; }
+  .hero-water-front { bottom: -20%; width: 84%; z-index: 18; opacity: .85;
+    filter: saturate(1.4) brightness(.92) drop-shadow(0 0 22px rgba(69,195,210,0.4));
+    -webkit-mask-image: linear-gradient(to top, #000 28%, transparent 70%); mask-image: linear-gradient(to top, #000 28%, transparent 70%);
+    transform: translate3d(calc(-50% + var(--mx) * -16px), calc(var(--my) * -9px), 0); transition: transform .35s ease-out;
+    animation: heroWater 10s ease-in-out -3s infinite alternate; }
+  @media (max-width: 900px) {
+    .hero-stage { overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%); mask-image: linear-gradient(to bottom, transparent 0, #000 12%); }
+    .hero-water-back { width: 130%; opacity: .3; }
+  }
+  @keyframes heroWater { from { scale: 1; rotate: -1.2deg; } to { scale: 1.04; rotate: 1.2deg; } }
+  @media (prefers-reduced-motion: reduce) { .hero-water-back, .hero-water-front { animation: none; transition: none; } }
 </style>
 </head>
 <body>
@@ -544,21 +562,7 @@
             </div>
           </div>
           <div class="hero-stage" id="hero-stage">
-            <svg class="hero-water" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <filter id="liquid" x="-20%" y="-20%" width="140%" height="140%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="4" result="n"><animate attributeName="baseFrequency" dur="14s" values="0.012 0.018;0.02 0.011;0.012 0.018" repeatCount="indefinite"/></feTurbulence>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="9"/>
-                  <feGaussianBlur stdDeviation="0.6"/>
-                </filter>
-              </defs>
-              <g filter="url(#liquid)">
-                <ellipse cx="52" cy="78" rx="46" ry="9" fill="rgba(34,120,200,.30)"/>
-                <ellipse cx="50" cy="52" rx="38" ry="30" fill="rgba(46,170,210,.16)"/>
-                <ellipse cx="22" cy="70" rx="14" ry="5" fill="rgba(120,220,255,.35)"/>
-                <ellipse cx="82" cy="66" rx="12" ry="4" fill="rgba(120,220,255,.3)"/>
-              </g>
-            </svg>
+            <img class="hero-water-back" src="assets/hero/water.webp" alt="" aria-hidden="true" width="1280" height="880">
             <div class="hero-glow"></div>
         <div class="hero-card" style="--x:6%;--y:24%;--w:25%;--ar:3/4;--rz:-8deg;--ry:16deg;--rx:4deg;--d:14;--dur:7.5s;--del:0s;--pos:30% 50%">
           <div class="hero-card-in"><img src="assets/hero/card-1.png" alt="Trabajo de Wolf Estudios 1" width="480" height="270" decoding="async"></div>
@@ -584,6 +588,7 @@
         <div class="hero-card hero-card-x" style="--x:81%;--y:21%;--w:17%;--ar:3/4;--rz:10deg;--ry:-20deg;--rx:4deg;--d:12;--dur:8s;--del:-2s;--pos:90% 40%">
           <div class="hero-card-in"><img src="assets/hero/card-8.png" alt="Trabajo de Wolf Estudios 8" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
+            <img class="hero-water-front" src="assets/hero/water.webp" alt="" aria-hidden="true" width="1280" height="880" loading="lazy">
             <img class="hero-logo" src="assets/logo_wolf.png" alt="Wolf Estudios" width="450" height="408">
         <i class="hero-shard hero-shard-a" style="--x:44%;--y:6%;--s:22px;--del:0.0s"></i>
         <i class="hero-shard hero-shard-b" style="--x:88%;--y:48%;--s:16px;--del:-1.7s"></i>
