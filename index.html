@@ -437,7 +437,7 @@
   }
 
   /* ===== SERVICIOS (8 tarjetas juntas) ===== */
-  .services-all { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .services-all { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   @media (max-width: 1100px) { .services-all { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 600px) { .services-all { grid-template-columns: 1fr; } }
 
@@ -606,14 +606,14 @@
   <div class="page" id="page-1">
     <div class="page-section">
       <div class="section-content">
-        <div class="section-inner" style="max-width:1120px;">
+        <div class="section-inner" style="max-width:1000px;">
           <h2 class="section-title reveal"><span class="accent-line">Servicios</span></h2>
           <div class="services-grid services-all">
             <div class="service-card theme-artistas reveal">
-              <img class="service-card-icon" src="assets/iconos_servicios/identidad_artista.png" alt="Identidad de artista" loading="lazy" decoding="async">
-              <h4>Identidad de artista</h4>
-              <p>Logo, paleta de colores y estilo visual diseñados para potenciar tu personalidad como artista.</p>
-              <div class="stags"><span class="stag">Logo</span><span class="stag">Branding</span><span class="stag">Brand Kit</span></div>
+              <img class="service-card-icon" src="assets/iconos_servicios/videos.png" alt="Videos y Reels" loading="lazy" decoding="async">
+              <h4>Videos y Reels</h4>
+              <p>Producción y edición de videos musicales, clips cortos y contenido para redes.</p>
+              <div class="stags"><span class="stag">Video</span><span class="stag">Reels</span><span class="stag">Edición</span></div>
             </div>
             <div class="service-card theme-artistas reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/portadas.png" alt="Portadas" loading="lazy" decoding="async">
@@ -622,16 +622,16 @@
               <div class="stags"><span class="stag">Spotify</span><span class="stag">YouTube</span><span class="stag">Eventos</span></div>
             </div>
             <div class="service-card theme-artistas reveal">
-              <img class="service-card-icon" src="assets/iconos_servicios/videos.png" alt="Videos y Reels" loading="lazy" decoding="async">
-              <h4>Videos y Reels</h4>
-              <p>Producción y edición de videos musicales, clips cortos y contenido para redes.</p>
-              <div class="stags"><span class="stag">Video</span><span class="stag">Reels</span><span class="stag">Edición</span></div>
-            </div>
-            <div class="service-card theme-artistas reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/motion_graphics.png" alt="Motion Graphics" loading="lazy" decoding="async">
               <h4>Motion Graphics</h4>
               <p>Animaciones, intros, lyric videos y piezas en movimiento para que tu contenido se sienta vivo.</p>
               <div class="stags"><span class="stag">Motion</span><span class="stag">After Effects</span><span class="stag">Lyric Video</span></div>
+            </div>
+            <div class="service-card theme-negocios reveal">
+              <img class="service-card-icon" src="assets/iconos_servicios/flyers.png" alt="Flyers y banners" loading="lazy" decoding="async">
+              <h4>Flyers y banners</h4>
+              <p>Material gráfico para redes, imprenta y publicidad digital listo para usar.</p>
+              <div class="stags"><span class="stag">Flyer</span><span class="stag">Banner</span><span class="stag">Social</span></div>
             </div>
             <div class="service-card theme-negocios reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/web.png" alt="Diseño web" loading="lazy" decoding="async">
@@ -644,18 +644,6 @@
               <h4>Identidad de marca</h4>
               <p>Logo, paleta, tipografía y guía de estilo para una marca consistente y profesional.</p>
               <div class="stags"><span class="stag">Logo</span><span class="stag">Branding</span><span class="stag">Brand Kit</span></div>
-            </div>
-            <div class="service-card theme-negocios reveal">
-              <img class="service-card-icon" src="assets/iconos_servicios/flyers.png" alt="Flyers y banners" loading="lazy" decoding="async">
-              <h4>Flyers y banners</h4>
-              <p>Material gráfico para redes, imprenta y publicidad digital listo para usar.</p>
-              <div class="stags"><span class="stag">Flyer</span><span class="stag">Banner</span><span class="stag">Social</span></div>
-            </div>
-            <div class="service-card theme-negocios reveal">
-              <img class="service-card-icon" src="assets/iconos_servicios/automatizaciones.png" alt="Automatizaciones" loading="lazy" decoding="async">
-              <h4>Automatizaciones</h4>
-              <p>CRM, funnels, respuestas automáticas y flujos con IA para que tu negocio trabaje solo.</p>
-              <div class="stags"><span class="stag">CRM</span><span class="stag">Funnels</span><span class="stag">IA</span></div>
             </div>
           </div>
           <div style="text-align:center; margin-top:8px; padding-bottom:48px;">
@@ -742,7 +730,6 @@
                   <select id="servicio-a" name="servicio" required>
                     <option value="">Seleccioná un servicio...</option>
                     <optgroup label="Para artistas">
-                      <option value="Identidad de artista">Identidad de artista</option>
                       <option value="Portadas">Portadas</option>
                       <option value="Videos y Reels">Videos y Reels</option>
                       <option value="Motion Graphics">Motion Graphics</option>
@@ -751,7 +738,6 @@
                       <option value="Diseño web / Landing page">Diseño web / Landing page</option>
                       <option value="Identidad de marca">Identidad de marca</option>
                       <option value="Flyers y banners">Flyers y banners</option>
-                      <option value="Automatizaciones / CRM">Automatizaciones / CRM</option>
                     </optgroup>
                   </select>
                 </label>
