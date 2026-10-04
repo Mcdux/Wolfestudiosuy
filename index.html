@@ -68,11 +68,11 @@
     color: var(--off-white);
     overflow-x: hidden;
     overflow-y: auto;
-    min-height: 100vh;
+    min-height: var(--vh100, 100vh);
   }
 
   /* ===== PAGE SYSTEM ===== */
-  .pages-wrapper { position: relative; overflow: visible; min-height: 100vh; }
+  .pages-wrapper { position: relative; overflow: visible; min-height: var(--vh100, 100vh); }
   .page {
     position: relative;
     opacity: 1; pointer-events: auto;
@@ -335,7 +335,7 @@
 
   /* ===== PAGES 2, 3: SERVICIOS & GALERÍA ===== */
   .page-section {
-    min-height: 100vh; position: relative; padding-top: 84px;
+    min-height: var(--vh100, 100vh); position: relative; padding-top: 84px;
     display: flex; flex-direction: column; overflow: hidden;
   }
   .page-section::after {
@@ -362,7 +362,7 @@
 
   /* ===== PAGE 4: PROCESO ===== */
   .proceso-page {
-    min-height: 100vh; position: relative; padding-top: 84px; display: flex; flex-direction: column; overflow: hidden;
+    min-height: var(--vh100, 100vh); position: relative; padding-top: 84px; display: flex; flex-direction: column; overflow: hidden;
   }
   .proceso-bg { position: absolute; inset: 0; background-image: var(--bg-img); background-size: cover; background-position: center; transform: scale(1.05); animation: slowZoom 20s ease-in-out infinite alternate; }
   .proceso-overlay {
@@ -399,7 +399,7 @@
 
   /* ===== PAGE 5: CONTACTO ===== */
   .final-page {
-    min-height: 100vh; position: relative; padding-top: 84px;
+    min-height: var(--vh100, 100vh); position: relative; padding-top: 84px;
     display: flex; flex-direction: column; overflow: hidden;
   }
   .final-bg { position: absolute; inset: 0; background-image: var(--bg-img); background-size: cover; background-position: center; transform: scale(1.05); animation: slowZoom 20s ease-in-out infinite alternate; }
@@ -512,6 +512,9 @@
     .hero-wave-back { width: 150%; } .hero-wave-front { width: 130%; }
   }
   @media (prefers-reduced-motion: reduce) { .hero-wave { animation: none; transition: none; } }
+
+  /* ===== ESCALA 90% EN ESCRITORIO (como zoom 90%, sin tocar el zoom del navegador) ===== */
+  @media (min-width: 901px) { html { zoom: 0.9; --vh100: calc(100vh / 0.9); } }
 </style>
 </head>
 <body>
@@ -797,7 +800,7 @@
     if (n < 0 || n >= totalPages) return;
     currentPage = n;
     var p = document.getElementById('page-' + currentPage);
-    if (p) p.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (p) window.scrollTo({ top: p.getBoundingClientRect().top + window.pageYOffset, behavior: 'smooth' });
     history.replaceState(null, '', '#' + pageHashes[currentPage]);
     updateUI();
     document.getElementById('nav-hamburger').classList.remove('open');
