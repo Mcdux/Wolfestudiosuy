@@ -451,7 +451,7 @@
   .hero-section .section-content { align-items: center; padding: 40px 56px; }
   .hero { position: relative; z-index: 2; width: 100%; max-width: 1240px; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 24px; align-items: center; }
   .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .hero-title { font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(54px, 6.8vw, 100px); line-height: 0.9; letter-spacing: 0; margin-bottom: 22px; }
+  .hero-title { font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(54px, 6.8vw, 92px); line-height: 0.9; letter-spacing: 0; margin-bottom: 22px; }
   .hero-title span { display: block; background: linear-gradient(180deg, #fff 10%, #9fb0bd 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero-title .hero-title-accent { background: linear-gradient(180deg, #7eddea 0%, #2b8fa0 100%); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 18px rgba(69,195,210,0.35)); }
   .hero-text { font-size: 17px; font-weight: 300; line-height: 1.65; color: rgba(221,228,232,0.85); max-width: 460px; margin-bottom: 28px; }
@@ -479,7 +479,8 @@
   .hero-shard-a { clip-path: polygon(50% 0, 100% 70%, 20% 100%); }
   .hero-shard-b { clip-path: polygon(0 20%, 80% 0, 100% 80%, 30% 100%); }
   .hero-words { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); list-style: none; display: none; flex-direction: column; gap: 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--muted); }
-  @media (min-width: 1380px) { .hero-words { display: flex; } }
+  @media (min-width: 1500px) { .hero-words { display: flex; right: -96px; } }
+  @media (min-width: 901px) { .hero-title span { white-space: nowrap; } }
   @keyframes heroFloat { from { transform: translate3d(0,-7px,0) rotate(-0.6deg); } to { transform: translate3d(0,9px,0) rotate(0.6deg); } }
   @keyframes heroLogo { from { translate: 0 -6px; } to { translate: 0 8px; } }
   @keyframes heroShard { from { transform: translate3d(0,-10px,0) rotate(-12deg); } to { transform: translate3d(8px,12px,0) rotate(18deg); } }
