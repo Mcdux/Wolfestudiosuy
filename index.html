@@ -515,6 +515,68 @@
 
   /* ===== ESCALA 90% EN ESCRITORIO (como zoom 90%, sin tocar el zoom del navegador) ===== */
   @media (min-width: 901px) { html { zoom: 0.9; --vh100: calc(100vh / 0.9); } }
+
+  /* ===== SLIDER TIPO CD ===== */
+  .cd-wrap { width: min(1100px, calc(100vw - 48px)); margin: 44px 0 0 50%; transform: translateX(-50%); padding-bottom: 40px; }
+  .cd-wrap.reveal { transform: translateX(-50%) translateY(20px); }
+  .cd-wrap.reveal.visible { transform: translateX(-50%) translateY(0); }
+  .cd-slider { position: relative; margin-top: 8px; }
+  .cd-track { display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 6px; scrollbar-width: none; padding: 22px 6px 12px; cursor: grab;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
+  .cd-track::-webkit-scrollbar { display: none; }
+  .cd-track.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+  .cd { flex: 0 0 auto; width: 190px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: var(--off-white); -webkit-user-drag: none; }
+  .cd-disc { position: relative; display: block; width: 190px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #07121d;
+    border: 2px solid rgba(221,228,232,0.4); box-shadow: 0 14px 34px rgba(0,0,0,0.55), 0 0 24px rgba(var(--accent-rgb),0.16); transition: transform .35s ease, box-shadow .35s ease; }
+  .cd-disc img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.36); display: block; pointer-events: none; }
+  .cd-disc::before { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: conic-gradient(from 20deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.24) 40deg, rgba(255,255,255,0) 95deg, rgba(120,200,255,0.22) 180deg, rgba(255,255,255,0) 235deg, rgba(255,255,255,0.2) 295deg, rgba(255,255,255,0) 360deg); }
+  .cd-disc::after { content: ''; position: absolute; left: 50%; top: 50%; width: 21%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; z-index: 3;
+    background: radial-gradient(circle, #050b12 0 36%, rgba(221,228,232,0.9) 38% 50%, rgba(10,24,38,0.92) 52% 100%); box-shadow: 0 0 0 3px rgba(5,11,18,0.55); }
+  .cd:hover .cd-disc, .cd:focus-visible .cd-disc { transform: scale(1.05); box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 34px rgba(var(--accent-rgb),0.4); animation: cdSpin 6s linear infinite; }
+  .cd:focus-visible { outline: none; }
+  .cd-title { margin-top: 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .cd-play { margin-top: 3px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); transition: color .25s; }
+  .cd:hover .cd-play, .cd:focus-visible .cd-play { color: var(--accent); }
+  .cd-arrow { position: absolute; top: 95px; z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(221,228,232,0.3); background: rgba(8,13,20,0.75); color: var(--off-white);
+    font-size: 26px; line-height: 1; cursor: pointer; backdrop-filter: blur(8px); transition: all .25s; }
+  .cd-arrow:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 18px rgba(var(--accent-rgb),0.3); }
+  .cd-arrow:disabled { opacity: .25; cursor: default; }
+  .cd-prev { left: -22px; } .cd-next { right: -22px; }
+  @keyframes cdSpin { to { rotate: 360deg; } }
+  @media (max-width: 700px) { .cd { width: 150px; } .cd-disc { width: 150px; } .cd-arrow { display: none; } .cd-track { gap: 20px; } .cd-wrap { width: calc(100vw - 32px); } }
+  @media (prefers-reduced-motion: reduce) { .cd:hover .cd-disc, .cd:focus-visible .cd-disc { animation: none; } }
+
+  /* ===== VENTANA DE VIDEO ===== */
+  .vid-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(3,8,14,0.88); backdrop-filter: blur(8px); padding: 24px; }
+  .vid-modal[hidden] { display: none; }
+  .vid-modal-inner { position: relative; width: min(94vw, 960px); }
+  .vid-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(var(--accent-rgb),0.35); box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(var(--accent-rgb),0.2); }
+  .vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .vid-close { position: absolute; top: -46px; right: 0; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(221,228,232,0.35); background: rgba(8,13,20,0.7); color: var(--off-white); font-size: 24px; line-height: 1; cursor: pointer; transition: all .25s; }
+  .vid-close:hover { border-color: var(--accent); color: var(--accent); }
+  .vid-yt { display: inline-block; margin-top: 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .vid-yt:hover { color: var(--accent); }
+
+  /* ===== MÚSICA DE FONDO: BOTÓN FLOTANTE ===== */
+  .sound-btn { position: fixed; right: 22px; bottom: 22px; z-index: 600; width: 48px; height: 48px; padding: 0; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; border: 1px solid rgba(var(--accent-rgb),0.55); background: rgba(8,13,20,0.72);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 8px 26px rgba(0,0,0,0.5), 0 0 18px rgba(var(--accent-rgb),0.22); transition: border-color .25s, box-shadow .25s, transform .25s; }
+  .sound-btn:hover { transform: scale(1.07); box-shadow: 0 8px 26px rgba(0,0,0,0.5), 0 0 26px rgba(var(--accent-rgb),0.45); }
+  .sound-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .sound-btn .eq { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+  .sound-btn .eq i { display: block; width: 3px; height: 100%; border-radius: 2px; background: var(--accent); transform-origin: bottom; transform: scaleY(0.25); }
+  .sound-btn.on .eq i { animation: eqBar 0.9s ease-in-out infinite alternate; }
+  .sound-btn.on .eq i:nth-child(2) { animation-duration: 0.65s; animation-delay: -0.3s; }
+  .sound-btn.on .eq i:nth-child(3) { animation-duration: 1.1s; animation-delay: -0.5s; }
+  .sound-btn.on .eq i:nth-child(4) { animation-duration: 0.75s; animation-delay: -0.15s; }
+  .sound-btn:not(.on)::after { content: ''; position: absolute; width: 28px; height: 2px; border-radius: 2px; background: var(--off-white); transform: rotate(-45deg); box-shadow: 0 0 0 1.5px rgba(8,13,20,0.85); }
+  .sound-btn:not(.on) { border-color: rgba(221,228,232,0.35); }
+  .sound-btn.hint::before { content: ''; position: absolute; inset: -1px; border-radius: 50%; border: 2px solid var(--accent); animation: soundHint 1.8s ease-out infinite; pointer-events: none; }
+  @keyframes eqBar { from { transform: scaleY(0.25); } to { transform: scaleY(1); } }
+  @keyframes soundHint { from { transform: scale(1); opacity: .8; } to { transform: scale(1.7); opacity: 0; } }
+  @media (max-width: 700px) { .sound-btn { right: 14px; bottom: 14px; width: 44px; height: 44px; } }
+  @media (prefers-reduced-motion: reduce) { .sound-btn.on .eq i { animation: none; transform: scaleY(0.7); } .sound-btn.hint::before { animation: none; display: none; } }
 </style>
 </head>
 <body>
@@ -616,7 +678,7 @@
             <div class="service-card theme-negocios reveal">
               <img class="service-card-icon" src="assets/iconos_servicios/videos.png" alt="Videos y Reels" loading="lazy" decoding="async">
               <h4>Videos y Reels</h4>
-              <p>Producción y/o edición de videos generales, clips cortos y contenido para redes.</p>
+              <p>Producción y edición de videos musicales, clips cortos y contenido para redes.</p>
               <div class="stags"><span class="stag">Video</span><span class="stag">Reels</span><span class="stag">Edición</span></div>
             </div>
             <div class="service-card theme-negocios reveal">
@@ -700,6 +762,76 @@
             </div>
           
             </div>
+          <div class="cd-wrap reveal">
+            <div class="section-eyebrow">Más trabajos</div>
+            <div class="cd-slider">
+              <button type="button" class="cd-arrow cd-prev" aria-label="Anteriores" disabled>‹</button>
+              <div class="cd-track" id="cd-track">
+                <a class="cd" href="https://www.youtube.com/watch?v=NlsWzKX0hY4" data-video="NlsWzKX0hY4" data-title="FRANUX" target="_blank" rel="noopener" aria-label="Ver video: FRANUX">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/NlsWzKX0hY4/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">FRANUX</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=k4PhGJdO-Jk" data-video="k4PhGJdO-Jk" data-title="I SEE THE LIGHT" target="_blank" rel="noopener" aria-label="Ver video: I SEE THE LIGHT">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/k4PhGJdO-Jk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">I SEE THE LIGHT</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=wZ85wIN4pvE" data-video="wZ85wIN4pvE" data-title="CLERICO" target="_blank" rel="noopener" aria-label="Ver video: CLERICO">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/wZ85wIN4pvE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">CLERICO</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=4xnZwXrkCLA" data-video="4xnZwXrkCLA" data-title="KOFLA" target="_blank" rel="noopener" aria-label="Ver video: KOFLA">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/4xnZwXrkCLA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">KOFLA</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=YkeXwvBkz8g" data-video="YkeXwvBkz8g" data-title="DANI THE KID" target="_blank" rel="noopener" aria-label="Ver video: DANI THE KID">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/YkeXwvBkz8g/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">DANI THE KID</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=YElvJLEugtM" data-video="YElvJLEugtM" data-title="ACOSTUMBRADO" target="_blank" rel="noopener" aria-label="Ver video: ACOSTUMBRADO">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/YElvJLEugtM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">ACOSTUMBRADO</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=DfHcxGMTRco" data-video="DfHcxGMTRco" data-title="RESET" target="_blank" rel="noopener" aria-label="Ver video: RESET">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/DfHcxGMTRco/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">RESET</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=PxwaCendsms" data-video="PxwaCendsms" data-title="SEAN" target="_blank" rel="noopener" aria-label="Ver video: SEAN">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/PxwaCendsms/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">SEAN</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=Up3FgEcpDLg" data-video="Up3FgEcpDLg" data-title="MTH" target="_blank" rel="noopener" aria-label="Ver video: MTH">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/Up3FgEcpDLg/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">MTH</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=KruiYGZ9nA0" data-video="KruiYGZ9nA0" data-title="AZ" target="_blank" rel="noopener" aria-label="Ver video: AZ">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/KruiYGZ9nA0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">AZ</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=jIs0YS65vNw" data-video="jIs0YS65vNw" data-title="PUNI" target="_blank" rel="noopener" aria-label="Ver video: PUNI">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/jIs0YS65vNw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">PUNI</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=hBNndj86O_k" data-video="hBNndj86O_k" data-title="M.SEAN" target="_blank" rel="noopener" aria-label="Ver video: M.SEAN">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/hBNndj86O_k/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">M.SEAN</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=rEFQ0YCDrqI" data-video="rEFQ0YCDrqI" data-title="GEO" target="_blank" rel="noopener" aria-label="Ver video: GEO">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/rEFQ0YCDrqI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">GEO</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=l-DR9TpKpqI" data-video="l-DR9TpKpqI" data-title="PLAKA" target="_blank" rel="noopener" aria-label="Ver video: PLAKA">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/l-DR9TpKpqI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">PLAKA</span><span class="cd-play">▶ Ver video</span>
+                </a>
+                <a class="cd" href="https://www.youtube.com/watch?v=0CUY60pAA20" data-video="0CUY60pAA20" data-title="STREAM" target="_blank" rel="noopener" aria-label="Ver video: STREAM">
+                  <span class="cd-disc"><img src="https://i.ytimg.com/vi/0CUY60pAA20/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
+                  <span class="cd-title">STREAM</span><span class="cd-play">▶ Ver video</span>
+                </a>
+              </div>
+              <button type="button" class="cd-arrow cd-next" aria-label="Siguientes">›</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -777,6 +909,20 @@
   </div>
 
 </div><!-- /pages-wrapper -->
+
+
+<div class="vid-modal" id="vid-modal" role="dialog" aria-modal="true" aria-label="Reproductor de video" hidden>
+  <div class="vid-modal-inner">
+    <button type="button" class="vid-close" id="vid-close" aria-label="Cerrar video">×</button>
+    <div class="vid-frame" id="vid-frame"></div>
+    <a class="vid-yt" id="vid-yt" href="#" target="_blank" rel="noopener">Abrir en YouTube</a>
+  </div>
+</div>
+
+<audio id="bg-audio" preload="none"></audio>
+<button type="button" id="sound-btn" class="sound-btn hint" aria-pressed="false" aria-label="Activar música de fondo" title="Música de fondo">
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
 
 <script>
   var currentPage = 0;
@@ -894,6 +1040,142 @@
       if (!raf) raf = requestAnimationFrame(apply);
     });
     stage.addEventListener('pointerleave', function () { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(apply); });
+  })();
+
+  (function () {
+    var track = document.getElementById('cd-track');
+    if (!track) return;
+    var prev = document.querySelector('.cd-prev'), next = document.querySelector('.cd-next');
+    function sync() {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft >= max;
+    }
+    function scrollByCards(dir) { var c = track.querySelector('.cd'); var w = c.offsetWidth + 28; track.scrollBy({ left: dir * w * 2, behavior: 'smooth' }); }
+    prev.addEventListener('click', function () { scrollByCards(-1); });
+    next.addEventListener('click', function () { scrollByCards(1); });
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync); sync();
+
+    // arrastrar con el mouse
+    var down = false, startX = 0, startLeft = 0, moved = 0;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      down = true; moved = 0; startX = e.clientX; startLeft = track.scrollLeft;
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!down) return;
+      var dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
+      if (moved > 5) { track.classList.add('dragging'); track.scrollLeft = startLeft - dx; }
+    });
+    window.addEventListener('pointerup', function () {
+      if (!down) return; down = false;
+      if (track.classList.contains('dragging')) { setTimeout(function () { track.classList.remove('dragging'); }, 0); }
+    });
+    track.addEventListener('click', function (e) { if (moved > 5) { e.preventDefault(); e.stopPropagation(); moved = 0; } }, true);
+
+    // ventana de video
+    var modal = document.getElementById('vid-modal'), frame = document.getElementById('vid-frame'),
+        closeBtn = document.getElementById('vid-close'), yt = document.getElementById('vid-yt'), lastFocus = null;
+    function openVideo(id, title, trigger) {
+      lastFocus = trigger;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&origin=' + encodeURIComponent(location.origin);
+      f.title = 'Video: ' + title; f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; f.allowFullscreen = true;
+      f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      frame.innerHTML = ''; frame.appendChild(f);
+      yt.href = 'https://www.youtube.com/watch?v=' + id;
+      modal.hidden = false; document.documentElement.style.overflow = 'hidden'; closeBtn.focus();
+      window.dispatchEvent(new CustomEvent('wolf:video', { detail: { open: true } }));
+    }
+    function closeVideo() {
+      modal.hidden = true; frame.innerHTML = ''; document.documentElement.style.overflow = '';
+      window.dispatchEvent(new CustomEvent('wolf:video', { detail: { open: false } }));
+      if (lastFocus) lastFocus.focus();
+    }
+    track.querySelectorAll('.cd').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault(); openVideo(a.dataset.video, a.dataset.title, a);
+      });
+    });
+    closeBtn.addEventListener('click', closeVideo);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeVideo(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeVideo(); });
+  })();
+
+  // ===== Música de fondo: dos instrumentales en bucle, una detrás de la otra =====
+  (function () {
+    var btn = document.getElementById('sound-btn'), audio = document.getElementById('bg-audio');
+    if (!btn || !audio) return;
+    var tracks = ['assets/audio/beat-1.mp3', 'assets/audio/beat-2.mp3'];
+    var VOLUME = 0.3, idx = 0, wanted = true, resumeAfter = false, fade = null;
+    try { if (localStorage.getItem('wolf-music') === 'off') wanted = false; } catch (e) {}
+    audio.src = tracks[0];
+
+    function playing() { return !audio.paused; }
+    function paint() {
+      var on = playing();
+      btn.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? 'Silenciar música de fondo' : 'Activar música de fondo');
+    }
+    function fadeTo(v, ms, done) {
+      clearInterval(fade);
+      var from = audio.volume, steps = Math.max(1, Math.round(ms / 50)), n = 0;
+      fade = setInterval(function () {
+        n++; try { audio.volume = Math.min(1, Math.max(0, from + (v - from) * n / steps)); } catch (e) {}
+        if (n >= steps) { clearInterval(fade); if (done) done(); }
+      }, 50);
+    }
+    function start() {
+      try { audio.volume = 0; } catch (e) {}
+      var p = audio.play();
+      if (p && p.then) {
+        p.then(function () { btn.classList.remove('hint'); detach(); fadeTo(VOLUME, 1500); paint(); })
+         .catch(function () { paint(); });
+      }
+      paint();
+    }
+    function stop(done) { fadeTo(0, 400, function () { audio.pause(); paint(); if (done) done(); }); }
+
+    // pasa a la siguiente instrumental; la lista vuelve a empezar al terminar la última
+    audio.addEventListener('ended', function () {
+      idx = (idx + 1) % tracks.length; audio.src = tracks[idx];
+      var p = audio.play(); if (p && p.catch) p.catch(function () {}); paint();
+    });
+    audio.addEventListener('play', paint); audio.addEventListener('pause', paint);
+
+    // los navegadores bloquean el audio hasta el primer clic/toque/tecla: se inicia en ese momento
+    var evs = ['pointerdown', 'keydown', 'touchend'];
+    function onGesture(e) { if (btn.contains(e.target)) return; if (wanted && !playing()) start(); }
+    function detach() { evs.forEach(function (n) { window.removeEventListener(n, onGesture, true); }); }
+    if (wanted) { evs.forEach(function (n) { window.addEventListener(n, onGesture, true); }); start(); }
+    else { btn.classList.remove('hint'); }
+
+    btn.addEventListener('click', function () {
+      if (playing()) { wanted = false; stop(); }
+      else { wanted = true; start(); }
+      try { localStorage.setItem('wolf-music', wanted ? 'on' : 'off'); } catch (e) {}
+    });
+
+    // sin música mientras se mira un video (ventana de la galería o videos incrustados)
+    function pauseForVideo() { if (playing()) { resumeAfter = true; stop(); } }
+    window.addEventListener('wolf:video', function (e) {
+      if (e.detail.open) pauseForVideo();
+      else if (resumeAfter && wanted) { resumeAfter = false; start(); }
+    });
+    window.addEventListener('blur', function () {
+      setTimeout(function () {
+        var a = document.activeElement;
+        if (a && a.tagName === 'IFRAME' && a.closest('.gallery-card')) { resumeAfter = false; pauseForVideo(); resumeAfter = false; }
+      }, 0);
+    });
+    // y se pausa si la pestaña queda en segundo plano
+    var hiddenPause = false;
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { if (playing()) { hiddenPause = true; audio.pause(); } }
+      else if (hiddenPause) { hiddenPause = false; if (wanted) start(); }
+    });
   })();
 </script>
 </body>
