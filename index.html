@@ -480,7 +480,7 @@
   .hero-shard-b { clip-path: polygon(0 20%, 80% 0, 100% 80%, 30% 100%); }
   .hero-words { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); list-style: none; display: none; flex-direction: column; gap: 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--muted); }
   @media (min-width: 1500px) { .hero-words { display: flex; right: -96px; } }
-  @media (min-width: 901px) { .hero-title span { white-space: nowrap; } }
+  @media (min-width: 901px) { .bebas-ok .hero-title span { white-space: nowrap; } }
   @keyframes heroFloat { from { transform: translate3d(0,-7px,0) rotate(-0.6deg); } to { transform: translate3d(0,9px,0) rotate(0.6deg); } }
   @keyframes heroLogo { from { translate: 0 -6px; } to { translate: 0 8px; } }
   @keyframes heroShard { from { transform: translate3d(0,-10px,0) rotate(-12deg); } to { transform: translate3d(8px,12px,0) rotate(18deg); } }
@@ -516,36 +516,47 @@
   /* ===== ESCALA 90% EN ESCRITORIO (como zoom 90%, sin tocar el zoom del navegador) ===== */
   @media (min-width: 901px) { html { zoom: 0.9; --vh100: calc(100vh / 0.9); } }
 
-  /* ===== SLIDER TIPO CD ===== */
+  /* ===== EJEMPLOS: TAPAS DE DISCO APILADAS (estilo Cover Flow) ===== */
   .cd-wrap { width: min(1100px, calc(100vw - 48px)); margin: 44px 0 0 50%; transform: translateX(-50%); padding-bottom: 40px; }
   .cd-wrap.reveal { transform: translateX(-50%) translateY(20px); }
   .cd-wrap.reveal.visible { transform: translateX(-50%) translateY(0); }
-  .cd-slider { position: relative; margin-top: 8px; }
-  .cd-track { display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 6px; scrollbar-width: none; padding: 22px 6px 12px; cursor: grab;
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
-  .cd-track::-webkit-scrollbar { display: none; }
-  .cd-track.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
-  .cd { flex: 0 0 auto; width: 190px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; text-align: center; text-decoration: none; color: var(--off-white); -webkit-user-drag: none; }
-  .cd-disc { position: relative; display: block; width: 190px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #07121d;
-    border: 2px solid rgba(221,228,232,0.4); box-shadow: 0 14px 34px rgba(0,0,0,0.55), 0 0 24px rgba(var(--accent-rgb),0.16); transition: transform .35s ease, box-shadow .35s ease; }
-  .cd-disc img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.36); display: block; pointer-events: none; }
-  .cd-disc::before { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    background: conic-gradient(from 20deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.24) 40deg, rgba(255,255,255,0) 95deg, rgba(120,200,255,0.22) 180deg, rgba(255,255,255,0) 235deg, rgba(255,255,255,0.2) 295deg, rgba(255,255,255,0) 360deg); }
-  .cd-disc::after { content: ''; position: absolute; left: 50%; top: 50%; width: 21%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; z-index: 3;
-    background: radial-gradient(circle, #050b12 0 36%, rgba(221,228,232,0.9) 38% 50%, rgba(10,24,38,0.92) 52% 100%); box-shadow: 0 0 0 3px rgba(5,11,18,0.55); }
-  .cd:hover .cd-disc, .cd:focus-visible .cd-disc { transform: scale(1.05); box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 34px rgba(var(--accent-rgb),0.4); animation: cdSpin 6s linear infinite; }
-  .cd:focus-visible { outline: none; }
-  .cd-title { margin-top: 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-  .cd-play { margin-top: 3px; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); transition: color .25s; }
-  .cd:hover .cd-play, .cd:focus-visible .cd-play { color: var(--accent); }
-  .cd-arrow { position: absolute; top: 95px; z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(221,228,232,0.3); background: rgba(8,13,20,0.75); color: var(--off-white);
+  .cd-slider { position: relative; margin-top: 4px; --cw: 220px; }
+  .cd-track { position: relative; height: calc(var(--cw) + 112px); perspective: 1300px; perspective-origin: 50% 32%; cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none; outline: none; }
+  .cd-track.dragging { cursor: grabbing; }
+  .cd { position: absolute; left: 50%; top: 16px; width: var(--cw); margin-left: calc(var(--cw) / -2); display: block; text-decoration: none; color: var(--off-white);
+    will-change: transform; transition: transform .6s cubic-bezier(.22,.9,.28,1), opacity .45s ease; -webkit-user-drag: none; }
+  .cd-disc { position: relative; display: block; width: var(--cw); height: var(--cw); overflow: hidden; border-radius: 4px; background: #07121d; border: 1px solid rgba(221,228,232,0.28);
+    box-shadow: 0 22px 44px rgba(0,0,0,0.6); transition: filter .45s ease, box-shadow .45s ease, border-color .45s ease;
+    -webkit-box-reflect: below 3px linear-gradient(to bottom, transparent 66%, rgba(255,255,255,0.2)); }
+  .cd-disc img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+  .cd-disc::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 7%; z-index: 2; pointer-events: none; background: linear-gradient(to right, rgba(0,0,0,0.55), rgba(255,255,255,0.16) 55%, rgba(0,0,0,0.25)); }
+  .cd-disc::after { content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(125deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0) 38%, rgba(255,255,255,0) 62%, rgba(255,255,255,0.09) 100%); }
+  .cd:not(.is-active) .cd-disc { filter: brightness(0.62) saturate(0.85); }
+  .cd.is-active .cd-disc { border-color: rgba(var(--accent-rgb),0.65); box-shadow: 0 26px 52px rgba(0,0,0,0.65), 0 0 38px rgba(var(--accent-rgb),0.32); }
+  .cd:focus-visible { outline: none; } .cd:focus-visible .cd-disc { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .cd .cd-title, .cd .cd-play { display: none; }
+  .cd-caption { display: flex; flex-direction: column; align-items: center; gap: 3px; margin-top: 6px; text-align: center; cursor: pointer; }
+  .cd-cap-title { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--off-white); }
+  .cd-cap-play { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); }
+  .cd-cap-count { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--muted); }
+  .cd-arrow { position: absolute; top: calc(var(--cw) / 2 - 4px); z-index: 200; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(221,228,232,0.3); background: rgba(8,13,20,0.75); color: var(--off-white);
     font-size: 26px; line-height: 1; cursor: pointer; backdrop-filter: blur(8px); transition: all .25s; }
   .cd-arrow:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 18px rgba(var(--accent-rgb),0.3); }
   .cd-arrow:disabled { opacity: .25; cursor: default; }
   .cd-prev { left: -22px; } .cd-next { right: -22px; }
-  @keyframes cdSpin { to { rotate: 360deg; } }
-  @media (max-width: 700px) { .cd { width: 150px; } .cd-disc { width: 150px; } .cd-arrow { display: none; } .cd-track { gap: 20px; } .cd-wrap { width: calc(100vw - 32px); } }
-  @media (prefers-reduced-motion: reduce) { .cd:hover .cd-disc, .cd:focus-visible .cd-disc { animation: none; } }
+  @media (max-width: 700px) { .cd-slider { --cw: 168px; } .cd-arrow { display: none; } .cd-wrap { width: calc(100vw - 32px); } }
+  @media (prefers-reduced-motion: reduce) { .cd { transition: none; } }
+
+
+  /* Flecha de scroll (Inicio) */
+  .scroll-hint { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 6; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 8px 16px; background: none; border: 0; cursor: pointer; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; transition: color .25s; }
+  .scroll-hint:hover, .scroll-hint:focus-visible { color: var(--off-white); outline: none; }
+  .scroll-hint svg { width: 28px; height: 28px; fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(var(--accent-rgb),0.65)); animation: scrollBounce 1.8s ease-in-out infinite; }
+  .scroll-hint svg path:nth-child(2) { opacity: .55; }
+  @keyframes scrollBounce { 0%, 100% { transform: translateY(-3px); opacity: .6; } 50% { transform: translateY(8px); opacity: 1; } }
+  @media (max-width: 900px), (max-height: 640px) { .scroll-hint { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .scroll-hint svg { animation: none; } }
 
   /* ===== VENTANA DE VIDEO ===== */
   .vid-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(3,8,14,0.88); backdrop-filter: blur(8px); padding: 24px; }
@@ -581,6 +592,10 @@
   /* Servicios: contenido centrado verticalmente (mismo espacio arriba y abajo) */
   .services-section { padding-top: 0; }
   .services-section .section-content { padding-top: 90px; padding-bottom: 90px; align-items: center; }
+
+  /* Galería: "Ejemplos" (slider) arriba, "Resumen" (tarjetas) abajo */
+  .section-inner > .cd-wrap:first-child { margin-top: 0; padding-bottom: 8px; }
+  .resumen-eyebrow { margin-top: 34px; }
 </style>
 </head>
 <body>
@@ -669,6 +684,10 @@
           <ul class="hero-words" aria-hidden="true"><li>Ideas</li><li>Diseño</li><li>Video</li><li>Web</li><li>IA</li></ul>
         </div>
       </div>
+      <button type="button" class="scroll-hint" onclick="goToPage(1)" aria-label="Bajar a Servicios">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5l6 6 6-6"/><path d="M6 12l6 6 6-6"/></svg>
+      </button>
     </div>
   </div>
 
@@ -729,45 +748,8 @@
     <div class="page-section">
       <div class="section-content">
         <div class="section-inner" style="max-width:800px;">
-          <div class="section-eyebrow reveal">Galería</div>
-          <h2 class="section-title reveal"><span class="accent-line">Resumen</span></h2>
-          <div class="gallery-grid">
-            <div class="gallery-card reveal">
-              <div class="gallery-media">
-                <iframe src="https://www.youtube.com/embed/mic9byKDPgg?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Producción audiovisual - Wolf Estudios"></iframe>
-              </div>
-              <h4>Producción audiovisual</h4>
-              <p>Videos, clips y piezas audiovisuales para artistas y marcas.</p>
-              <div class="stags"><span class="stag">Video</span><span class="stag">Edición</span></div>
-            </div>
-            <div class="gallery-card reveal">
-              <div class="gallery-media">
-                <iframe src="https://www.youtube.com/embed/-cbOfz7gmOI?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Motion Graphics Wolf Estudios"></iframe>
-              </div>
-              <h4>Motion Graphics</h4>
-              <p>Animación, ritmo y movimiento para piezas más dinámicas.</p>
-              <div class="stags"><span class="stag">Motion</span><span class="stag">Animación</span></div>
-            </div>
-            <div class="gallery-card reveal">
-              <div class="gallery-media">
-                <img src="assets/gallery_analytics_empresas.png" alt="Identidad de marca y estrategia de contenido para redes" loading="lazy" decoding="async">
-              </div>
-              <h4>Identidad de marca</h4>
-              <p>Branding completo para empresa local: logo, paleta, aplicaciones.</p>
-              <div class="stags"><span class="stag">Branding</span><span class="stag">Logo</span></div>
-            </div>
-            <div class="gallery-card reveal">
-              <div class="gallery-media">
-                <img src="assets/hero/card-9.png" alt="Landing page de Wolf Estudios: página web con enfoque en seguridad y rendimiento" loading="lazy" decoding="async">
-              </div>
-              <h4>Landing pages</h4>
-              <p>Páginas web modernas, rápidas y pensadas para convertir visitantes en clientes.</p>
-              <div class="stags"><span class="stag">Web</span><span class="stag">Landing</span></div>
-            </div>
-          
-            </div>
           <div class="cd-wrap reveal">
-            <div class="section-eyebrow">Más trabajos</div>
+            <div class="section-eyebrow">Ejemplos</div>
             <div class="cd-slider">
               <button type="button" class="cd-arrow cd-prev" aria-label="Anteriores" disabled>‹</button>
               <div class="cd-track" id="cd-track">
@@ -823,9 +805,9 @@
                   <span class="cd-disc"><img src="https://i.ytimg.com/vi/KruiYGZ9nA0/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
                   <span class="cd-title">AZ</span><span class="cd-play">▶ Ver video</span>
                 </a>
-                <a class="cd" href="https://www.youtube.com/watch?v=jIs0YS65vNw" data-video="jIs0YS65vNw" data-title="PUNI" target="_blank" rel="noopener" aria-label="Ver video: PUNI">
+                <a class="cd" href="https://www.youtube.com/watch?v=jIs0YS65vNw" data-video="jIs0YS65vNw" data-title="GAVO" target="_blank" rel="noopener" aria-label="Ver video: GAVO">
                   <span class="cd-disc"><img src="https://i.ytimg.com/vi/jIs0YS65vNw/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
-                  <span class="cd-title">PUNI</span><span class="cd-play">▶ Ver video</span>
+                  <span class="cd-title">GAVO</span><span class="cd-play">▶ Ver video</span>
                 </a>
                 <a class="cd" href="https://www.youtube.com/watch?v=yDaLvbkt22U" data-video="yDaLvbkt22U" data-title="GESE" target="_blank" rel="noopener" aria-label="Ver video: GESE">
                   <span class="cd-disc"><img src="https://i.ytimg.com/vi/yDaLvbkt22U/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false"></span>
@@ -853,8 +835,46 @@
                 </a>
               </div>
               <button type="button" class="cd-arrow cd-next" aria-label="Siguientes">›</button>
+              <div class="cd-caption" id="cd-caption" aria-live="polite"><span class="cd-cap-title"></span><span class="cd-cap-play">▶ Ver video</span><span class="cd-cap-count"></span></div>
             </div>
           </div>
+
+          <div class="section-eyebrow reveal resumen-eyebrow">Resumen</div>
+          <div class="gallery-grid">
+            <div class="gallery-card reveal">
+              <div class="gallery-media">
+                <iframe src="https://www.youtube.com/embed/mic9byKDPgg?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Producción audiovisual - Wolf Estudios"></iframe>
+              </div>
+              <h4>Producción audiovisual</h4>
+              <p>Videos, clips y piezas audiovisuales para artistas y marcas.</p>
+              <div class="stags"><span class="stag">Video</span><span class="stag">Edición</span></div>
+            </div>
+            <div class="gallery-card reveal">
+              <div class="gallery-media">
+                <iframe src="https://www.youtube.com/embed/-cbOfz7gmOI?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Motion Graphics Wolf Estudios"></iframe>
+              </div>
+              <h4>Motion Graphics</h4>
+              <p>Animación, ritmo y movimiento para piezas más dinámicas.</p>
+              <div class="stags"><span class="stag">Motion</span><span class="stag">Animación</span></div>
+            </div>
+            <div class="gallery-card reveal">
+              <div class="gallery-media">
+                <img src="assets/gallery_analytics_empresas.png" alt="Identidad de marca y estrategia de contenido para redes" loading="lazy" decoding="async">
+              </div>
+              <h4>Identidad de marca</h4>
+              <p>Branding completo para empresa local: logo, paleta, aplicaciones.</p>
+              <div class="stags"><span class="stag">Branding</span><span class="stag">Logo</span></div>
+            </div>
+            <div class="gallery-card reveal">
+              <div class="gallery-media">
+                <img src="assets/hero/card-9.png" alt="Landing page de Wolf Estudios: página web con enfoque en seguridad y rendimiento" loading="lazy" decoding="async">
+              </div>
+              <h4>Landing pages</h4>
+              <p>Páginas web modernas, rápidas y pensadas para convertir visitantes en clientes.</p>
+              <div class="stags"><span class="stag">Web</span><span class="stag">Landing</span></div>
+            </div>
+          
+            </div>
 
         </div>
       </div>
@@ -1069,33 +1089,67 @@
   (function () {
     var track = document.getElementById('cd-track');
     if (!track) return;
-    var prev = document.querySelector('.cd-prev'), next = document.querySelector('.cd-next');
-    function sync() {
-      var max = track.scrollWidth - track.clientWidth - 2;
-      prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft >= max;
+    var prev = document.querySelector('.cd-prev'), next = document.querySelector('.cd-next'), cap = document.getElementById('cd-caption'),
+        cds = Array.prototype.slice.call(track.querySelectorAll('.cd')), active = 0, moved = 0;
+    var capT = cap.querySelector('.cd-cap-title'), capC = cap.querySelector('.cd-cap-count');
+    function layout() {
+      var cw = cds[0].offsetWidth, half = track.clientWidth / 2;
+      var maxA = Math.max(2, Math.min(6, Math.floor((half - cw * 0.98) / (cw * 0.2)) + 1));
+      cds.forEach(function (el, i) {
+        var o = i - active, a = Math.abs(o), sgn = o < 0 ? -1 : 1, x = 0, z = 0, r = 0;
+        if (o !== 0) { x = sgn * (cw * 0.74 + (a - 1) * cw * 0.2); z = -cw * 0.5 - (a - 1) * 10; r = -sgn * 62; }
+        el.style.transform = 'translate3d(' + x + 'px,0,' + z + 'px) rotateY(' + r + 'deg)';
+        el.style.zIndex = 100 - a;
+        el.style.opacity = a > maxA ? 0 : 1;
+        el.style.pointerEvents = a > maxA ? 'none' : 'auto';
+        el.classList.toggle('is-active', o === 0);
+        el.tabIndex = o === 0 ? 0 : -1;
+        if (o === 0) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current');
+      });
+      capT.textContent = cds[active].dataset.title;
+      capC.textContent = ('0' + (active + 1)).slice(-2) + ' / ' + cds.length;
+      prev.disabled = active === 0; next.disabled = active === cds.length - 1;
     }
-    function scrollByCards(dir) { var c = track.querySelector('.cd'); var w = c.offsetWidth + 28; track.scrollBy({ left: dir * w * 2, behavior: 'smooth' }); }
-    prev.addEventListener('click', function () { scrollByCards(-1); });
-    next.addEventListener('click', function () { scrollByCards(1); });
-    track.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('resize', sync); sync();
+    function go(n) { n = Math.max(0, Math.min(cds.length - 1, n)); if (n !== active) { active = n; layout(); } }
+    prev.addEventListener('click', function () { go(active - 1); });
+    next.addEventListener('click', function () { go(active + 1); });
+    window.addEventListener('resize', layout); layout();
 
-    // arrastrar con el mouse
-    var down = false, startX = 0, startLeft = 0, moved = 0;
+    // teclado, rueda horizontal y arrastre (mouse o dedo)
+    track.tabIndex = 0;
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); }
+    });
+    var wheelAcc = 0;
+    track.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault(); wheelAcc += e.deltaX;
+      if (Math.abs(wheelAcc) > 40) { go(active + (wheelAcc > 0 ? 1 : -1)); wheelAcc = 0; }
+    }, { passive: false });
+    var down = false, startX = 0, startActive = 0;
     track.addEventListener('pointerdown', function (e) {
-      if (e.pointerType !== 'mouse' || e.button !== 0) return;
-      down = true; moved = 0; startX = e.clientX; startLeft = track.scrollLeft;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      down = true; moved = 0; startX = e.clientX; startActive = active;
     });
     window.addEventListener('pointermove', function (e) {
       if (!down) return;
       var dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
-      if (moved > 5) { track.classList.add('dragging'); track.scrollLeft = startLeft - dx; }
+      if (moved > 8) { track.classList.add('dragging'); go(startActive - Math.round(dx / (cds[0].offsetWidth * 0.3))); }
     });
-    window.addEventListener('pointerup', function () {
-      if (!down) return; down = false;
-      if (track.classList.contains('dragging')) { setTimeout(function () { track.classList.remove('dragging'); }, 0); }
+    window.addEventListener('pointerup', function () { if (!down) return; down = false; setTimeout(function () { track.classList.remove('dragging'); }, 0); });
+    window.addEventListener('pointercancel', function () { down = false; track.classList.remove('dragging'); });
+
+    // clic: una tapa lateral pasa al centro; la del centro abre el video
+    cds.forEach(function (a, i) {
+      a.addEventListener('click', function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault();
+        if (moved > 8) { moved = 0; return; }
+        if (i !== active) go(i); else openVideo(a.dataset.video, a.dataset.title, a);
+      });
     });
-    track.addEventListener('click', function (e) { if (moved > 5) { e.preventDefault(); e.stopPropagation(); moved = 0; } }, true);
+    cap.addEventListener('click', function () { openVideo(cds[active].dataset.video, cds[active].dataset.title, cds[active]); });
 
     // ventana de video
     var modal = document.getElementById('vid-modal'), frame = document.getElementById('vid-frame'),
@@ -1116,12 +1170,6 @@
       window.dispatchEvent(new CustomEvent('wolf:video', { detail: { open: false } }));
       if (lastFocus) lastFocus.focus();
     }
-    track.querySelectorAll('.cd').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
-        e.preventDefault(); openVideo(a.dataset.video, a.dataset.title, a);
-      });
-    });
     closeBtn.addEventListener('click', closeVideo);
     modal.addEventListener('click', function (e) { if (e.target === modal) closeVideo(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeVideo(); });
@@ -1201,5 +1249,10 @@
       else if (hiddenPause) { hiddenPause = false; if (wanted) start(); }
     });
   })();
+
+  // el título del hero solo se fuerza en una línea si cargó Bebas Neue (con otra fuente más ancha se cortaría)
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load('40px "Bebas Neue"').then(function (f) { if (f && f.length) document.documentElement.classList.add('bebas-ok'); }).catch(function () {});
+  }
 </script>
 </body>
