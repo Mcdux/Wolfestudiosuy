@@ -7,7 +7,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Wolf Estudios — Diseño Gráfico & IA en Uruguay</title>
 <meta name="description" content="Wolf Estudios: diseño gráfico, contenido digital e IA en Uruguay. Servicios para artistas y negocios en Montevideo.">
-<meta name="keywords" content="diseñador gráfico Uruguay, diseño gráfico Montevideo, UGC Uruguay, TikTok Ads Uruguay, páginas web Uruguay, diseño con IA Uruguay">
+<meta name="keywords" content="diseñador gráfico Uruguay, diseño gráfico Montevideo, UGC Uruguay, páginas web Uruguay, diseño con IA Uruguay">
 <meta name="author" content="Wolf Estudios">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wolfestudios.uy/">
@@ -35,15 +35,13 @@
   "areaServed": "Uruguay",
   "sameAs": [
     "https://www.instagram.com/wolfestudiosuy/",
-    "https://www.youtube.com/@WolfEstudios"
+    "https://www.youtube.com/@wolfestudiosuy"
   ],
   "serviceType": ["Diseño gráfico","Contenido UGC","Edición de video","Diseño web","Estrategia digital con IA"]
 }
 </script>
 <style>
   :root {
-    --gold: #45c3d2;
-    --gold-light: #7eddea;
     --navy: #0d1b2a;
     --off-white: #dde4e8;
     --muted: #8a9aaa;
@@ -55,12 +53,6 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
-  .sr-only {
-    position: absolute; width: 1px; height: 1px;
-    padding: 0; margin: -1px; overflow: hidden;
-    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-  }
 
   body {
     font-family: 'Barlow', sans-serif;
@@ -80,7 +72,6 @@
     overflow: visible;
     scroll-margin-top: 84px;
   }
-  .page.active { opacity: 1; pointer-events: auto; transform: none; }
 
   /* ===== NAV ===== */
   nav {
@@ -99,16 +90,6 @@
   }
   .nav-logo { height: 34px; filter: drop-shadow(0 0 8px rgba(69,195,210,0.3)); cursor: pointer; flex-shrink: 0; }
   .nav-logo-link { display:inline-flex; align-items:center; padding:0 6px; }
-  .nav-logo-button { display: inline-flex; align-items: center; border: 0; background: transparent; padding: 0; cursor: pointer; }
-  .nav-back {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    display: flex; align-items: center; gap: 6px;
-    padding: 8px 14px; border-radius: 999px;
-    transition: color 0.3s, background 0.3s;
-  }
-  .nav-back:hover { color: var(--off-white); background: rgba(255,255,255,0.06); }
   .nav-links {
     display: flex; gap: 4px; list-style: none;
     align-items: center; justify-content: center; flex: 1;
@@ -171,17 +152,6 @@
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); text-decoration: none;
   }
 
-  /* ===== PAGE DOTS ===== */
-  .page-dots {
-    display: none;
-  }
-  .page-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(var(--accent-rgb),0.25); cursor: pointer;
-    transition: all 0.3s; border: 1px solid rgba(var(--accent-rgb),0.3); padding: 0;
-  }
-  .page-dot.active { background: var(--accent); transform: scale(1.3); border-color: var(--accent); }
-
   /* ===== SHARED SECTION ELEMENTS ===== */
   .section-eyebrow {
     font-family: 'Barlow Condensed', sans-serif;
@@ -200,10 +170,6 @@
     text-align: center;
   }
   .accent-line { color: var(--accent); display: block; text-align: center; }
-  .section-desc {
-    font-size: 15px; font-weight: 300; color: rgba(200,215,230,0.7);
-    line-height: 1.7; margin-bottom: 36px; max-width: 480px;
-  }
   .btn-accent {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
@@ -213,15 +179,6 @@
     transition: all 0.3s; cursor: pointer; text-decoration: none; border: none;
   }
   .btn-accent:hover { background: linear-gradient(135deg, var(--accent-dark), var(--accent-light)); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(var(--accent-rgb),0.35); }
-  .btn-ghost-accent {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
-    font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--accent); background: transparent;
-    border: 1px solid rgba(var(--accent-rgb),0.4); padding: 14px 36px;
-    transition: all 0.3s; cursor: pointer; text-decoration: none;
-  }
-  .btn-ghost-accent:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),0.08); transform: translateY(-2px); }
 
   /* Service cards */
   .service-card {
@@ -246,19 +203,6 @@
   }
   .stags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
 
-  /* Process cards */
-  .process-step {
-    min-height: 165px; padding: 22px 18px; position: relative;
-    background: rgba(8,13,20,0.34); border: 1px solid rgba(221,228,232,0.12); border-radius: 18px;
-    backdrop-filter: blur(18px) saturate(135%);
-    box-shadow: 0 18px 54px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.06);
-    transition: background 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.2s;
-  }
-  .process-step:hover { border-color: rgba(var(--accent-rgb),0.36); transform: translateY(-2px); box-shadow: 0 22px 58px rgba(var(--accent-rgb),0.24), inset 0 1px 0 rgba(255,255,255,0.06); }
-  .step-num { font-family: 'Barlow Condensed', sans-serif; font-size: 34px; font-weight: 900; color: rgba(var(--accent-rgb),0.12); line-height: 1; margin-bottom: 8px; }
-  .process-step h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 6px; }
-  .process-step p { font-size: 12px; font-weight: 300; color: rgba(200,215,230,0.7); line-height: 1.6; }
-
   /* Gallery cards */
   .gallery-card {
     padding: 22px 18px; position: relative;
@@ -273,8 +217,17 @@
     border: 1px solid rgba(221,228,232,0.12); border-radius: 14px;
     overflow: hidden; background: rgba(0,0,0,0.36);
   }
-  .gallery-media iframe, .gallery-media img { width: 100%; height: 100%; display: block; border: 0; }
+  .gallery-media img { width: 100%; height: 100%; display: block; border: 0; }
   .gallery-media img { object-fit: contain; object-position: center; }
+  .gallery-video { position: relative; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .gallery-video img { object-fit: cover; transition: transform .5s ease, filter .35s ease; }
+  .gallery-video:hover img, .gallery-video:focus-visible img { transform: scale(1.04); filter: brightness(0.8); }
+  .gallery-video:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .gallery-play { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(8,13,20,0.72); border: 1px solid rgba(var(--accent-rgb),0.65); box-shadow: 0 8px 26px rgba(0,0,0,0.5), 0 0 22px rgba(var(--accent-rgb),0.3);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; transition: transform .25s, box-shadow .25s; }
+  .gallery-play svg { width: 22px; height: 22px; margin-left: 3px; fill: var(--accent); }
+  .gallery-video:hover .gallery-play, .gallery-video:focus-visible .gallery-play { transform: scale(1.1); box-shadow: 0 8px 26px rgba(0,0,0,0.5), 0 0 32px rgba(var(--accent-rgb),0.5); }
   .gallery-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--off-white); margin-bottom: 6px; }
   .gallery-card p { font-size: 12px; font-weight: 300; color: rgba(180,200,220,0.65); line-height: 1.6; flex: 1; min-height: 38px; }
 
@@ -331,8 +284,6 @@
   .site-footer-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--off-white); }
   .site-footer-text { font-size: 13px; font-weight: 300; color: var(--muted); letter-spacing: 0.5px; }
 
-  @keyframes floatY { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
-
   /* ===== PAGES 2, 3: SERVICIOS & GALERÍA ===== */
   .page-section {
     min-height: var(--vh100, 100vh); position: relative; padding-top: 84px;
@@ -360,44 +311,7 @@
   .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
   .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; }
 
-  /* ===== PAGE 4: PROCESO ===== */
-  .proceso-page {
-    min-height: var(--vh100, 100vh); position: relative; padding-top: 84px; display: flex; flex-direction: column; overflow: hidden;
-  }
-  .proceso-bg { position: absolute; inset: 0; background-image: var(--bg-img); background-size: cover; background-position: center; transform: scale(1.05); animation: slowZoom 20s ease-in-out infinite alternate; }
-  .proceso-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, rgba(var(--ov-a),0.88) 0%, rgba(var(--ov-b),0.80) 28%, rgba(var(--ov-b),0.80) 72%, rgba(var(--ov-a),0.88) 100%);
-  }
-  .proceso-content {
-    position: relative; z-index: 2; flex: 1;
-    max-width: 700px; margin: 0 auto;
-    padding: 60px 0 40px;
-    width: min(calc(100% - 112px), 700px);
-    display: flex; flex-direction: column;
-  }
-  .proceso-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700;
-    letter-spacing: 5px; text-transform: uppercase; color: var(--accent);
-    margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 10px;
-    text-align: center;
-  }
-  .proceso-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
-  .proceso-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
-  .proceso-title {
-    font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
-    font-size: clamp(40px, 5vw, 72px); font-weight: 900; text-transform: uppercase;
-    line-height: 0.95; letter-spacing: -1px; color: var(--off-white); margin-bottom: 32px;
-    text-align: center;
-  }
-  .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; border: 0; width: 100%; }
-  .proceso-content .process-step h4 { color: var(--accent); }
-  .proceso-content .process-step { min-height: 195px; }
-  .proceso-content .step-num { color: rgba(var(--accent-rgb),0.18); }
-  .proceso-content .process-step p { color: rgba(200,215,230,0.7); }
-  .proceso-content .process-step:hover { border-color: rgba(var(--accent-rgb),0.36); box-shadow: 0 22px 58px rgba(var(--accent-rgb),0.24), inset 0 1px 0 rgba(255,255,255,0.06); }
-
-  /* ===== PAGE 5: CONTACTO ===== */
+  /* ===== CONTACTO ===== */
   .final-page {
     min-height: var(--vh100, 100vh); position: relative; padding-top: 84px;
     display: flex; flex-direction: column; overflow: hidden;
@@ -424,26 +338,17 @@
     .nav-hamburger { display: flex; }
     .section-content { padding: 60px 24px 40px; }
     .services-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: 1fr; width: min(100%, 520px); }
-    .proceso-content { width: calc(100% - 48px); padding: 40px 0; }
-    .process-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; width: min(100%, 520px); margin: 0 auto; }
     .contact-section { padding: 40px 24px; }
     .contact-form { grid-template-columns: 1fr; }
-    .page-dots { display: none; }
     .site-footer { padding: 24px; flex-direction: column; text-align: center; }
   }
-  @media (max-width: 600px) {
-    .process-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ===== SERVICIOS (8 tarjetas juntas) ===== */
+  /* ===== SERVICIOS (6 tarjetas juntas) ===== */
   .services-all { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   @media (max-width: 1100px) { .services-all { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 600px) { .services-all { grid-template-columns: 1fr; } }
 
   /* ===== TEMAS POR SECCIÓN ===== */
-  .theme-artistas { --accent:#e84a4a; --accent-dark:#b52222; --accent-light:#f06060; --accent-rgb:232,74,74;
-    --accent-bg:rgba(232,74,74,0.08); --accent-border:rgba(232,74,74,0.2); }
   .theme-negocios { --accent:#4ea8e8; --accent-dark:#2a7fd4; --accent-light:#6ac0f8; --accent-rgb:78,168,232;
     --accent-bg:rgba(78,168,232,0.08); --accent-border:rgba(78,168,232,0.2); }
 
@@ -620,13 +525,6 @@
   <a href="#galeria" data-page="2">Galería</a>
   <a href="#contacto" data-page="3">Contacto</a>
   <a href="#contacto" data-page="3" class="nav-cta-mobile">WhatsApp directo</a>
-</div>
-
-<div class="page-dots" id="page-dots">
-  <button class="page-dot active" type="button" onclick="goToPage(0)" title="Inicio" aria-label="Ir a Inicio"></button>
-  <button class="page-dot" type="button" onclick="goToPage(1)" title="Servicios" aria-label="Ir a Servicios"></button>
-  <button class="page-dot" type="button" onclick="goToPage(2)" title="Galería" aria-label="Ir a Galería"></button>
-  <button class="page-dot" type="button" onclick="goToPage(3)" title="Contacto" aria-label="Ir a Contacto"></button>
 </div>
 
 <div class="pages-wrapper">
@@ -842,28 +740,30 @@
           <div class="section-eyebrow reveal resumen-eyebrow">Resumen</div>
           <div class="gallery-grid">
             <div class="gallery-card reveal">
-              <div class="gallery-media">
-                <iframe src="https://www.youtube.com/embed/mic9byKDPgg?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Producción audiovisual - Wolf Estudios"></iframe>
-              </div>
+              <a class="gallery-media gallery-video" href="https://www.youtube.com/watch?v=mic9byKDPgg" data-video="mic9byKDPgg" data-title="Producción audiovisual" target="_blank" rel="noopener" aria-label="Ver video: Producción audiovisual">
+                <img src="https://i.ytimg.com/vi/mic9byKDPgg/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false">
+                <span class="gallery-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+              </a>
               <h4>Producción audiovisual</h4>
               <p>Videos, clips y piezas audiovisuales para artistas y marcas.</p>
               <div class="stags"><span class="stag">Video</span><span class="stag">Edición</span></div>
             </div>
             <div class="gallery-card reveal">
-              <div class="gallery-media">
-                <iframe src="https://www.youtube.com/embed/-cbOfz7gmOI?playsinline=1&rel=0&origin=https%3A%2F%2Fwolfestudios.uy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" title="Motion Graphics Wolf Estudios"></iframe>
-              </div>
+              <a class="gallery-media gallery-video" href="https://www.youtube.com/watch?v=-cbOfz7gmOI" data-video="-cbOfz7gmOI" data-title="Motion Graphics" target="_blank" rel="noopener" aria-label="Ver video: Motion Graphics">
+                <img src="https://i.ytimg.com/vi/-cbOfz7gmOI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" draggable="false">
+                <span class="gallery-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+              </a>
               <h4>Motion Graphics</h4>
               <p>Animación, ritmo y movimiento para piezas más dinámicas.</p>
               <div class="stags"><span class="stag">Motion</span><span class="stag">Animación</span></div>
             </div>
             <div class="gallery-card reveal">
               <div class="gallery-media">
-                <img src="assets/gallery_analytics_empresas.png" alt="Identidad de marca y estrategia de contenido para redes" loading="lazy" decoding="async">
+                <img src="assets/gallery_analytics_empresas.png" alt="Presencia digital: estrategia de contenido y análisis para redes" loading="lazy" decoding="async">
               </div>
-              <h4>Identidad de marca</h4>
-              <p>Branding completo para empresa local: logo, paleta, aplicaciones.</p>
-              <div class="stags"><span class="stag">Branding</span><span class="stag">Logo</span></div>
+              <h4>Presencia digital</h4>
+              <p>Contenido, estética y estrategia para que tu marca se vea profesional en redes.</p>
+              <div class="stags"><span class="stag">Redes</span><span class="stag">Contenido</span></div>
             </div>
             <div class="gallery-card reveal">
               <div class="gallery-media">
@@ -909,16 +809,13 @@
                 <label class="full" for="servicio-a">Servicio
                   <select id="servicio-a" name="servicio" required>
                     <option value="">Seleccioná un servicio...</option>
-                    <optgroup label="Para artistas">
-                      <option value="Portadas">Portadas</option>
-                      <option value="Videos y Reels">Videos y Reels</option>
-                      <option value="Motion Graphics">Motion Graphics</option>
-                    </optgroup>
-                    <optgroup label="Para negocios">
-                      <option value="Diseño web / Landing page">Diseño web / Landing page</option>
-                      <option value="Identidad de marca">Identidad de marca</option>
-                      <option value="Flyers y banners">Flyers y banners</option>
-                    </optgroup>
+                    <option value="Edición de Video">Edición de Video</option>
+                    <option value="Grabación de Video / Reels">Grabación de Video / Reels</option>
+                    <option value="Portadas">Portadas</option>
+                    <option value="Motion Graphics / Lyrics / Promos">Motion Graphics / Lyrics / Promos</option>
+                    <option value="Flyers y banners">Flyers y banners</option>
+                    <option value="Diseño web / Landing page">Diseño web / Landing page</option>
+                    <option value="Identidad de marca / Presencia digital">Identidad de marca / Presencia digital</option>
                   </select>
                 </label>
                 <label class="full" for="message-a">Mensaje
@@ -998,10 +895,6 @@
   }
 
   function updateUI() {
-    document.querySelectorAll('.page-dot').forEach(function(d, i) {
-      d.classList.toggle('active', i === currentPage);
-      d.setAttribute('aria-current', i === currentPage ? 'page' : 'false');
-    });
     document.querySelectorAll('a[data-page]').forEach(function(a) {
       var isCurrent = parseInt(a.dataset.page) === currentPage;
       a.classList.toggle('active-page', isCurrent);
@@ -1170,6 +1063,12 @@
       window.dispatchEvent(new CustomEvent('wolf:video', { detail: { open: false } }));
       if (lastFocus) lastFocus.focus();
     }
+    document.querySelectorAll('.gallery-video').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault(); openVideo(a.dataset.video, a.dataset.title, a);
+      });
+    });
     closeBtn.addEventListener('click', closeVideo);
     modal.addEventListener('click', function (e) { if (e.target === modal) closeVideo(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeVideo(); });
@@ -1230,17 +1129,11 @@
       try { localStorage.setItem('wolf-music', wanted ? 'on' : 'off'); } catch (e) {}
     });
 
-    // sin música mientras se mira un video (ventana de la galería o videos incrustados)
+    // sin música mientras se mira un video (ventana de video)
     function pauseForVideo() { if (playing()) { resumeAfter = true; stop(); } }
     window.addEventListener('wolf:video', function (e) {
       if (e.detail.open) pauseForVideo();
       else if (resumeAfter && wanted) { resumeAfter = false; start(); }
-    });
-    window.addEventListener('blur', function () {
-      setTimeout(function () {
-        var a = document.activeElement;
-        if (a && a.tagName === 'IFRAME' && a.closest('.gallery-card')) { resumeAfter = false; pauseForVideo(); resumeAfter = false; }
-      }, 0);
     });
     // y se pausa si la pestaña queda en segundo plano
     var hiddenPause = false;
