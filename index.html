@@ -413,7 +413,6 @@
     .hero-text { margin-left: auto; margin-right: auto; }
     .hero-actions { justify-content: center; }
     .hero-stage { aspect-ratio: 1 / 1; max-width: 520px; margin: 0 auto; }
-    .hero-card-x { display: none; }
   }
   @media (max-width: 700px) { .hero-shard { display: none; } }
   @media (prefers-reduced-motion: reduce) { .hero-card-in, .hero-logo, .hero-shard { animation: none; } .hero-card, .hero-logo { transition: none; } }
@@ -582,10 +581,10 @@
         <div class="hero-card" style="--x:27%;--y:68%;--w:21%;--ar:1/1;--rz:4deg;--ry:8deg;--rx:-4deg;--d:36;--dur:7s;--del:-5s;--pos:45% 30%">
           <div class="hero-card-in"><img src="assets/hero/card-6.png" alt="Trabajo de Wolf Estudios 6" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
-        <div class="hero-card hero-card-x" style="--x:49%;--y:71%;--w:22%;--ar:4/3;--rz:-5deg;--ry:-8deg;--rx:-3deg;--d:18;--dur:10s;--del:-6s;--pos:70% 80%">
+        <div class="hero-card" style="--x:49%;--y:67%;--w:29%;--ar:4/3;--rz:-5deg;--ry:-8deg;--rx:-3deg;--d:18;--dur:10s;--del:-6s;--pos:70% 80%">
           <div class="hero-card-in"><img src="assets/hero/card-7.png" alt="Trabajo de Wolf Estudios 7" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
-        <div class="hero-card hero-card-x" style="--x:81%;--y:21%;--w:17%;--ar:3/4;--rz:10deg;--ry:-20deg;--rx:4deg;--d:12;--dur:8s;--del:-2s;--pos:90% 40%">
+        <div class="hero-card" style="--x:81%;--y:21%;--w:17%;--ar:3/4;--rz:10deg;--ry:-20deg;--rx:4deg;--d:12;--dur:8s;--del:-2s;--pos:90% 40%">
           <div class="hero-card-in"><img src="assets/hero/card-8.png" alt="Trabajo de Wolf Estudios 8" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
             <img class="hero-wave hero-wave-front" src="assets/hero/wave.webp" alt="" aria-hidden="true" width="1280" height="720" loading="lazy">
@@ -1001,7 +1000,8 @@
     var track = document.getElementById('cd-track');
     if (!track) return;
     var prev = document.querySelector('.cd-prev'), next = document.querySelector('.cd-next'), cap = document.getElementById('cd-caption'),
-        cds = Array.prototype.slice.call(track.querySelectorAll('.cd')), active = 0, moved = 0;
+        cds = Array.prototype.slice.call(track.querySelectorAll('.cd')), moved = 0,
+        active = Math.max(0, cds.findIndex(function (c) { return c.dataset.title === 'VERTE'; })); // arranca en VERTE: discos a ambos lados
     var capT = cap.querySelector('.cd-cap-title'), capC = cap.querySelector('.cd-cap-count');
     function layout() {
       var cw = cds[0].offsetWidth, half = track.clientWidth / 2;
