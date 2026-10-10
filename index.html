@@ -190,6 +190,24 @@
     transition: background 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.2s;
   }
   .service-card:hover { border-color: rgba(var(--accent-rgb),0.45); transform: translateY(-2px); box-shadow: 0 22px 58px rgba(var(--accent-rgb),0.28), inset 0 1px 0 rgba(255,255,255,0.06); }
+  /* fondo de imagen con blur (cada tarjeta define --card-bg en su style) */
+  .service-card { overflow: hidden; isolation: isolate; }
+  .service-card::before, .service-card::after { content: ''; position: absolute; pointer-events: none; }
+  .service-card::before {
+    inset: -10px; z-index: -2;
+    background: var(--card-bg) center / cover no-repeat;
+    filter: blur(var(--card-blur, 3px)) brightness(0.75) saturate(1.05);
+    transition: filter .45s ease, transform .6s ease;
+  }
+  .service-card::after {
+    inset: 0; z-index: -1;
+    background: linear-gradient(to top, rgba(6,12,20,0.90) 0%, rgba(6,12,20,0.62) 48%, rgba(6,12,20,0.34) 100%);
+  }
+  /* contenido centrado */
+  .service-card { text-align: center; }
+  .service-card-icon { margin-left: auto; margin-right: auto; }
+  .service-card .stags { justify-content: center; }
+  .service-card:hover::before { filter: blur(var(--card-blur, 3px)) brightness(0.95) saturate(1.1); transform: scale(1.04); }
   .service-card-icon { width: 48px; height: 48px; display: block; margin-bottom: 10px; object-fit: cover; border-radius: 14px; }
   .service-card h4 {
     font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700;
@@ -596,37 +614,37 @@
         <div class="section-inner" style="max-width:1000px;">
           <h2 class="section-title reveal"><span class="accent-line">Servicios</span></h2>
           <div class="services-grid services-all">
-            <div class="service-card theme-negocios reveal">
+            <div class="service-card theme-negocios reveal" style="--card-bg:url('assets/hero/servicio-videos.png')">
               <img class="service-card-icon" src="assets/iconos_servicios/videos.png" alt="Videos y Reels" loading="lazy" decoding="async">
               <h4>Videos y Reels</h4>
               <p>Producción y edición de videos musicales, clips cortos y contenido para redes.</p>
               <div class="stags"><span class="stag">Video</span><span class="stag">Reels</span><span class="stag">Edición</span></div>
             </div>
-            <div class="service-card theme-negocios reveal">
+            <div class="service-card theme-negocios reveal" style="--card-bg:url('assets/hero/servicio-portadas.png')">
               <img class="service-card-icon" src="assets/iconos_servicios/portadas.png" alt="Portadas" loading="lazy" decoding="async">
               <h4>Portadas</h4>
               <p>Diseño de covers para Spotify, YouTube, eventos y material promocional.</p>
               <div class="stags"><span class="stag">Spotify</span><span class="stag">YouTube</span><span class="stag">Eventos</span></div>
             </div>
-            <div class="service-card theme-negocios reveal">
+            <div class="service-card theme-negocios reveal" style="--card-bg:url('assets/hero/servicio-motion.png')">
               <img class="service-card-icon" src="assets/iconos_servicios/motion_graphics.png" alt="Motion Graphics" loading="lazy" decoding="async">
               <h4>Motion Graphics</h4>
               <p>Animaciones, intros, lyric videos y piezas en movimiento para que tu contenido se sienta vivo.</p>
               <div class="stags"><span class="stag">Motion</span><span class="stag">After Effects</span><span class="stag">Lyric Video</span></div>
             </div>
-            <div class="service-card theme-negocios reveal">
+            <div class="service-card theme-negocios reveal" style="--card-bg:url('assets/hero/servicio-flyers.png')">
               <img class="service-card-icon" src="assets/iconos_servicios/flyers.png" alt="Flyers y banners" loading="lazy" decoding="async">
               <h4>Flyers y banners</h4>
               <p>Material gráfico para redes, imprenta y publicidad digital listo para usar.</p>
               <div class="stags"><span class="stag">Flyer</span><span class="stag">Banner</span><span class="stag">Social</span></div>
             </div>
-            <div class="service-card theme-negocios reveal">
+            <div class="service-card theme-negocios reveal" style="--card-bg:url('assets/hero/servicio-web.png')">
               <img class="service-card-icon" src="assets/iconos_servicios/web.png" alt="Diseño web" loading="lazy" decoding="async">
               <h4>Diseño web / Landing pages</h4>
               <p>Sitios modernos, rápidos y optimizados para convertir visitantes en clientes.</p>
               <div class="stags"><span class="stag">Web</span><span class="stag">Landing</span><span class="stag">UX</span></div>
             </div>
-            <div class="service-card theme-negocios reveal">
+            <div class="service-card theme-negocios reveal" style="--card-bg:url('assets/hero/servicio-identidad.png')">
               <img class="service-card-icon" src="assets/iconos_servicios/identidad_marca.png" alt="Identidad de marca" loading="lazy" decoding="async">
               <h4>Identidad de marca</h4>
               <p>Logo, paleta, tipografía y guía de estilo para una marca consistente y profesional.</p>
