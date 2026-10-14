@@ -625,97 +625,138 @@
 </style>
 
 <!-- =====================================================================
-     CAPA AZUL / ROJO (50-50)
-     Va después de la capa empresarial. Azul a la izquierda, rojo a la derecha,
-     con mezcla en el centro. Para ajustar los tonos tocá las variables de :root
-     (--blue, --red, --tint-rot). Para volver a la versión empresarial,
-     borrá este bloque de estilos completo.
+     CAPA CONTRASTE: AZUL BASE + ROJO EN VENTANAS Y PESTAÑAS
+     Va después de la capa empresarial.
+       Azul : fondo, letras, etiquetas, formularios, ondas e imágenes.
+       Rojo : nav, filtros, botones principales, tarjetas y marcos.
+       Fusión: bordes que pasan de rojo a azul, titular con degradé,
+               etiquetas azules sobre tarjetas rojas, ola roja sobre fondo azul.
+     Tonos ajustables en :root (--blue, --red, --red-deep-rgb, --tint-rot).
+     Para volver a la versión empresarial, borrá este bloque de estilos completo.
      ===================================================================== -->
-<style id="capa-azul-rojo">
+<style id="capa-contraste">
   :root {
-    --blue: #4ea8e8; --blue-dark: #2a7fd4; --blue-light: #7cc0f4; --blue-rgb: 78,168,232;
-    --red: #e24b5a;  --red-dark: #c63a4a;  --red-light: #ff7f8b;  --red-rgb: 226,75,90;
-    /* cuánto se gira el tono de las imágenes azules para volverlas rojas */
-    --tint-rot: 155deg;
+    --blue: #4ea8e8; --blue-dark: #2a7fd4; --blue-light: #8cc6f7; --blue-rgb: 78,168,232;
+    --red: #e24b5a;  --red-dark: #b8283a;  --red-light: #ff7f8b;  --red-rgb: 226,75,90;
+    --red-deep-rgb: 112,20,40;       /* rojo oscuro para superficies (nav, tarjetas) */
+    --tint-rot: 155deg;              /* giro de tono de la ola roja */
 
-    /* el acento general pasa a ser el azul; el rojo entra como segundo color */
+    /* fondo y texto en azul */
+    --navy: #0a1f3f; --off-white: #d6e6fa; --muted: #86a5cc;
+    --ov-a: 6,20,46; --ov-b: 9,28,60; --ov-c: 8,26,56;
+
+    /* el acento general es azul; el rojo se aplica por componente */
     --accent: var(--blue); --accent-dark: var(--blue-dark); --accent-light: var(--blue-light);
     --accent-rgb: var(--blue-rgb);
-    --accent-bg: rgba(var(--blue-rgb), 0.08); --accent-border: rgba(var(--blue-rgb), 0.2);
+    --accent-bg: rgba(var(--blue-rgb), 0.10); --accent-border: rgba(var(--blue-rgb), 0.30);
 
-    --grad-x: linear-gradient(90deg, var(--blue-dark), var(--red-dark));
     --grad-text: linear-gradient(90deg, var(--blue-light), var(--red-light));
   }
-  /* mezcla en espacio oklab: el centro queda parejo, sin zona turbia */
   @supports (background: linear-gradient(in oklab, red, blue)) {
-    :root {
-      --grad-x: linear-gradient(in oklab 90deg, var(--blue-dark), var(--red-dark));
-      --grad-text: linear-gradient(in oklab 90deg, var(--blue-light), var(--red-light));
-    }
+    :root { --grad-text: linear-gradient(in oklab 90deg, var(--blue-light), var(--red-light)); }
   }
 
-  /* ----- Fondo: mitad azul, mitad roja, con mezcla en el medio ----- */
+  /* ----- Fondo azul ----- */
   .page-section::before, .final-overlay {
     background:
-      linear-gradient(115deg,
-        rgba(var(--blue-rgb), 0.28) 0%, rgba(var(--blue-rgb), 0.12) 38%,
-        rgba(var(--red-rgb), 0.12) 62%, rgba(var(--red-rgb), 0.28) 100%),
+      radial-gradient(ellipse 80% 55% at 50% 0%, rgba(var(--blue-rgb), 0.26), transparent 70%),
       linear-gradient(to right,
         rgba(var(--ov-a), 0.93) 0%, rgba(var(--ov-b), 0.88) 30%,
         rgba(var(--ov-b), 0.88) 70%, rgba(var(--ov-a), 0.93) 100%);
   }
 
-  /* ----- Navegación y footer ----- */
-  nav::after { content: ''; position: absolute; left: 18px; right: 18px; bottom: -1px; height: 2px; border-radius: 2px; background: var(--grad-x); opacity: .85; pointer-events: none; }
-  .site-footer { border-top: 2px solid; border-image: var(--grad-x) 1; }
+  /* ----- Letras azules ----- */
+  .accent-line { color: var(--blue-light); }
+  .hero-title span { background: linear-gradient(180deg, #e6f2ff 0%, #8cc6f7 100%); -webkit-background-clip: text; background-clip: text; }
+  .hero-text { color: rgba(214,230,250,0.88); }
 
-  /* ----- Botones: degradé azul a rojo ----- */
-  .btn-accent, .nav-cta, .nav-mobile-menu .nav-cta-mobile { background: var(--grad-x); color: #fff; border-color: transparent; }
-  .btn-accent:hover, .nav-cta:hover { background: var(--grad-x); border-color: transparent; filter: brightness(1.12); }
-  .svc-filter button[aria-pressed="true"] { background: var(--grad-x); color: #fff; }
-
-  /* ----- Títulos y etiquetas con degradé ----- */
-  .accent-line, .contact-inner h2 span, .hero-title .hero-title-accent {
+  /* fusión: el titular pasa de azul a rojo */
+  .hero-title .hero-title-accent, .contact-inner h2 span {
     display: block; width: fit-content;
     background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; filter: none;
   }
-  .accent-line, .contact-inner h2 span { margin-left: auto; margin-right: auto; }
-  .section-eyebrow {
-    width: fit-content; margin-left: auto; margin-right: auto;
-    background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
+  .contact-inner h2 span { margin-left: auto; margin-right: auto; }
   @media (max-width: 900px) { .hero-title span { margin-left: auto; margin-right: auto; } }
 
-  /* ----- Hero: ondas, brillo y cartas repartidas 50/50 ----- */
-  .hero-glow {
-    background:
-      radial-gradient(closest-side at 28% 50%, rgba(var(--blue-rgb), 0.22), transparent 72%),
-      radial-gradient(closest-side at 72% 50%, rgba(var(--red-rgb), 0.22), transparent 72%);
-  }
-  .hero-wave-front { opacity: .42; filter: blur(1.5px) hue-rotate(var(--tint-rot)); }
-  .tint-red { filter: hue-rotate(var(--tint-rot)) saturate(1.05); }
-  .hero-card-in:has(.tint-red)::after {
-    background: linear-gradient(135deg, rgba(255,255,255,0.16) 0%, transparent 38%, rgba(var(--red-rgb), 0.22) 100%);
-  }
+  /* ----- Pestañas rojas: navegación ----- */
+  nav { background: rgba(var(--red-deep-rgb), 0.80); border-color: rgba(255,255,255,0.16); }
+  .nav-links a { color: rgba(255,255,255,0.78); }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a.active-page { color: #fff; background: rgba(255,255,255,0.16); }
+  .nav-cta, .nav-mobile-menu .nav-cta-mobile { background: var(--blue); color: #04162c; border-color: var(--blue); }
+  .nav-cta:hover { background: var(--blue-light); border-color: var(--blue-light); }
+  .nav-hamburger { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.30); }
+  .nav-hamburger span { background: #fff; }
+  .nav-mobile-menu { background: rgba(var(--red-deep-rgb), 0.95); border-color: rgba(255,255,255,0.15); }
+  .nav-mobile-menu a { color: rgba(255,255,255,0.82); border-bottom-color: rgba(255,255,255,0.12); }
+  .nav-mobile-menu a:hover { color: #fff; }
 
-  /* ----- Tarjetas: tablero azul / rojo ----- */
-  .service-card:nth-child(even), .gallery-card:nth-child(even) {
-    --accent: var(--red-light); --accent-dark: var(--red-dark); --accent-light: var(--red-light);
-    --accent-rgb: var(--red-rgb);
-    --accent-bg: rgba(var(--red-rgb), 0.10); --accent-border: rgba(var(--red-rgb), 0.28);
-  }
+  /* ----- Pestañas rojas: selector de servicios ----- */
+  .svc-filter { background: rgba(var(--red-deep-rgb), 0.55); border-color: rgba(255,127,139,0.30); }
+  .svc-filter button { color: rgba(255,255,255,0.70); }
+  .svc-filter button:hover { color: #fff; }
+  .svc-filter button[aria-pressed="true"] { background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; }
+
+  /* ----- Botones: rojo con filo azul; el secundario va en azul ----- */
+  .btn-accent { background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; border: 1px solid rgba(var(--blue-rgb), 0.55); }
+  .btn-accent:hover { background: linear-gradient(135deg, var(--red-light), var(--red)); }
+  .btn-outline { color: var(--blue-light); border-color: rgba(var(--blue-rgb), 0.60); }
+  .btn-outline:hover { color: #fff; border-color: var(--blue-light); background: rgba(var(--blue-rgb), 0.12); }
+
+  /* ----- Ventanas rojas: tarjetas de servicios (con imagen azul debajo) ----- */
+  .service-card { background: rgba(var(--red-deep-rgb), 0.25); border-color: rgba(255,127,139,0.32); }
+  .service-card:hover { border-color: rgba(255,127,139,0.60); }
   .service-card::after {
     background:
-      linear-gradient(160deg, rgba(var(--accent-rgb), 0.18) 0%, transparent 55%),
-      linear-gradient(to top, rgba(6,12,20,0.90) 0%, rgba(6,12,20,0.72) 55%, rgba(6,12,20,0.55) 100%);
+      linear-gradient(90deg, var(--red), var(--blue)) top / 100% 3px no-repeat,
+      linear-gradient(160deg, rgba(var(--red-rgb), 0.42) 0%, rgba(var(--red-deep-rgb), 0.28) 55%, rgba(var(--red-deep-rgb), 0.40) 100%),
+      linear-gradient(to top, rgba(36,6,16,0.88) 0%, rgba(36,6,16,0.60) 50%, rgba(36,6,16,0.35) 100%);
   }
-  .service-card:nth-child(even)::before { filter: blur(var(--card-blur, 1px)) brightness(0.7) saturate(1) hue-rotate(var(--tint-rot)); }
-  .service-card:nth-child(even):hover::before { filter: blur(var(--card-blur, 1px)) brightness(0.85) saturate(1.05) hue-rotate(var(--tint-rot)); transform: scale(1.03); }
-  .gallery-card { border-top: 2px solid rgba(var(--accent-rgb), 0.55); }
+  .service-card h4 { color: #fff; }
+  .service-card p { color: rgba(255,232,235,0.88); }
+  /* fusión: etiquetas azules sobre tarjetas rojas */
+  .stag { background: rgba(var(--blue-rgb), 0.20); border-color: rgba(var(--blue-rgb), 0.55); color: #b9dcff; }
 
-  /* ----- Sonido: barras alternadas ----- */
-  .sound-btn .eq i:nth-child(odd) { background: var(--blue); }
-  .sound-btn .eq i:nth-child(even) { background: var(--red-light); }
+  /* ----- Ventanas rojas: tarjetas de Áreas de trabajo ----- */
+  .gallery-card {
+    background: linear-gradient(90deg, var(--red), var(--blue)) top / 100% 3px no-repeat, rgba(var(--red-deep-rgb), 0.45);
+    border: 1px solid rgba(255,127,139,0.30);
+  }
+  .gallery-card h4 { color: #fff; }
+  .gallery-card p { color: rgba(255,232,235,0.88); }
+  .gallery-play { background: rgba(var(--red-deep-rgb), 0.88); border-color: rgba(255,255,255,0.55); }
+  .gallery-play svg { fill: #fff; }
+
+  /* ----- Hero: marcos rojos con imágenes azules, ola roja de fusión ----- */
+  .hero-card-in { border: 1.5px solid rgba(255,127,139,0.75); }
+  .hero-card-in::after { background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, transparent 40%, rgba(var(--red-rgb), 0.18) 100%); }
+  .hero-glow {
+    background:
+      radial-gradient(closest-side at 30% 40%, rgba(var(--blue-rgb), 0.26), transparent 72%),
+      radial-gradient(closest-side at 78% 72%, rgba(var(--red-rgb), 0.16), transparent 72%);
+  }
+  .hero-wave-front { opacity: .30; filter: blur(1.5px) hue-rotate(var(--tint-rot)); }
+
+  /* ----- Slider de videos ----- */
+  .cd.is-active .cd-disc { border-color: var(--red-light); }
+  .cd-cap-title { color: var(--blue-light); }
+  .cd-cap-play { color: var(--red-light); }
+  .cd-arrow { background: rgba(var(--red-deep-rgb), 0.85); border-color: rgba(255,255,255,0.30); }
+  .cd-arrow:hover:not(:disabled) { border-color: var(--red-light); color: #fff; }
+
+  /* ----- Contacto: campos azules, foco rojo ----- */
+  .contact-form input, .contact-form select, .contact-form textarea { background: rgba(6,20,46,0.60); border-color: rgba(var(--blue-rgb), 0.35); }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--red-light); }
+  .contact-form select option { background: #0a1f3f; }
+
+  /* ----- Video, sonido, footer ----- */
+  .vid-frame { border-color: rgba(255,127,139,0.60); }
+  .vid-close { background: rgba(var(--red-deep-rgb), 0.92); border-color: rgba(255,255,255,0.35); }
+  .sound-btn { background: rgba(var(--red-deep-rgb), 0.90); border-color: rgba(255,255,255,0.35); }
+  .sound-btn .eq i:nth-child(odd) { background: #fff; }
+  .sound-btn .eq i:nth-child(even) { background: var(--blue-light); }
+  .sound-btn.hint::before { border-color: var(--red-light); }
+  .site-footer { background: rgba(4,14,34,0.85); border-top: 2px solid; border-image: linear-gradient(90deg, var(--red), var(--blue)) 1; }
 </style>
 </head>
 <body>
@@ -768,10 +809,10 @@
           <div class="hero-card-in"><img src="assets/hero/card-2.png" alt="Trabajo de Wolf Estudios 2" width="480" height="270" decoding="async"></div>
         </div>
         <div class="hero-card" style="--x:60%;--y:9%;--w:22%;--ar:3/4;--rz:8deg;--ry:-14deg;--rx:4deg;--d:20;--dur:9s;--del:-4s;--pos:80% 50%">
-          <div class="hero-card-in"><img class="tint-red" src="assets/hero/card-3.png" alt="Trabajo de Wolf Estudios 3" width="480" height="270" decoding="async"></div>
+          <div class="hero-card-in"><img src="assets/hero/card-3.png" alt="Trabajo de Wolf Estudios 3" width="480" height="270" decoding="async"></div>
         </div>
         <div class="hero-card" style="--x:67%;--y:43%;--w:28%;--ar:4/3;--rz:6deg;--ry:-16deg;--rx:3deg;--d:32;--dur:8s;--del:-1s;--pos:50% 60%">
-          <div class="hero-card-in"><img class="tint-red" src="assets/hero/card-4.png" alt="Trabajo de Wolf Estudios 4" width="480" height="270" loading="lazy" decoding="async"></div>
+          <div class="hero-card-in"><img src="assets/hero/card-4.png" alt="Trabajo de Wolf Estudios 4" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
         <div class="hero-card" style="--x:3%;--y:58%;--w:26%;--ar:4/3;--rz:-6deg;--ry:14deg;--rx:-3deg;--d:22;--dur:9.5s;--del:-3s;--pos:20% 70%">
           <div class="hero-card-in"><img src="assets/hero/card-5.png" alt="Trabajo de Wolf Estudios 5" width="480" height="270" loading="lazy" decoding="async"></div>
@@ -780,10 +821,10 @@
           <div class="hero-card-in"><img src="assets/hero/card-6.png" alt="Trabajo de Wolf Estudios 6" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
         <div class="hero-card" style="--x:49%;--y:67%;--w:29%;--ar:4/3;--rz:-5deg;--ry:-8deg;--rx:-3deg;--d:18;--dur:10s;--del:-6s;--pos:70% 80%">
-          <div class="hero-card-in"><img class="tint-red" src="assets/hero/card-7.png" alt="Trabajo de Wolf Estudios 7" width="480" height="270" loading="lazy" decoding="async"></div>
+          <div class="hero-card-in"><img src="assets/hero/card-7.png" alt="Trabajo de Wolf Estudios 7" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
         <div class="hero-card" style="--x:81%;--y:21%;--w:17%;--ar:3/4;--rz:10deg;--ry:-20deg;--rx:4deg;--d:12;--dur:8s;--del:-2s;--pos:90% 40%">
-          <div class="hero-card-in"><img class="tint-red" src="assets/hero/card-8.png" alt="Trabajo de Wolf Estudios 8" width="480" height="270" loading="lazy" decoding="async"></div>
+          <div class="hero-card-in"><img src="assets/hero/card-8.png" alt="Trabajo de Wolf Estudios 8" width="480" height="270" loading="lazy" decoding="async"></div>
         </div>
             <img class="hero-wave hero-wave-front" src="assets/hero/wave.webp" alt="" aria-hidden="true" width="1280" height="720" loading="lazy">
             <img class="hero-logo" src="assets/logo_wolf.png" alt="Wolf Estudios" width="450" height="408">
