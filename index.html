@@ -625,138 +625,38 @@
 </style>
 
 <!-- =====================================================================
-     CAPA CONTRASTE: AZUL BASE + ROJO EN VENTANAS Y PESTAÑAS
-     Va después de la capa empresarial.
-       Azul : fondo, letras, etiquetas, formularios, ondas e imágenes.
-       Rojo : nav, filtros, botones principales, tarjetas y marcos.
-       Fusión: bordes que pasan de rojo a azul, titular con degradé,
-               etiquetas azules sobre tarjetas rojas, ola roja sobre fondo azul.
-     Tonos ajustables en :root (--blue, --red, --red-deep-rgb, --tint-rot).
-     Para volver a la versión empresarial, borrá este bloque de estilos completo.
+     FONDO AZUL / ROJO DIFUMINADO
+     Un lado azul y el otro rojo, como manchas de luz desenfocadas que se
+     mezclan en el centro. Solo cambia el fondo: el resto del diseño queda igual.
+     Ajustes: --glow-a (intensidad en el borde) y --glow-b (alcance del difuminado).
+     Para quitarlo, borrá este bloque de estilos completo.
      ===================================================================== -->
-<style id="capa-contraste">
+<style id="fondo-azul-rojo">
   :root {
-    --blue: #4ea8e8; --blue-dark: #2a7fd4; --blue-light: #8cc6f7; --blue-rgb: 78,168,232;
-    --red: #e24b5a;  --red-dark: #b8283a;  --red-light: #ff7f8b;  --red-rgb: 226,75,90;
-    --red-deep-rgb: 112,20,40;       /* rojo oscuro para superficies (nav, tarjetas) */
-    --tint-rot: 155deg;              /* giro de tono de la ola roja */
-
-    /* fondo y texto en azul */
-    --navy: #0a1f3f; --off-white: #d6e6fa; --muted: #86a5cc;
-    --ov-a: 6,20,46; --ov-b: 9,28,60; --ov-c: 8,26,56;
-
-    /* el acento general es azul; el rojo se aplica por componente */
-    --accent: var(--blue); --accent-dark: var(--blue-dark); --accent-light: var(--blue-light);
-    --accent-rgb: var(--blue-rgb);
-    --accent-bg: rgba(var(--blue-rgb), 0.10); --accent-border: rgba(var(--blue-rgb), 0.30);
-
-    --grad-text: linear-gradient(90deg, var(--blue-light), var(--red-light));
+    --bg-blue-rgb: 78,168,232;
+    --bg-red-rgb: 226,75,90;
+    --glow-a: 0.50;   /* intensidad del color en el borde de cada lado */
+    --glow-b: 0.26;   /* intensidad en la zona intermedia del difuminado */
   }
-  @supports (background: linear-gradient(in oklab, red, blue)) {
-    :root { --grad-text: linear-gradient(in oklab 90deg, var(--blue-light), var(--red-light)); }
-  }
-
-  /* ----- Fondo azul ----- */
   .page-section::before, .final-overlay {
     background:
-      radial-gradient(ellipse 80% 55% at 50% 0%, rgba(var(--blue-rgb), 0.26), transparent 70%),
+      /* lado izquierdo: azul */
+      radial-gradient(ellipse 70% 90% at 0% 45%,
+        rgba(var(--bg-blue-rgb), var(--glow-a)) 0%,
+        rgba(var(--bg-blue-rgb), var(--glow-b)) 42%,
+        rgba(var(--bg-blue-rgb), 0.08) 68%,
+        transparent 85%),
+      /* lado derecho: rojo */
+      radial-gradient(ellipse 70% 90% at 100% 55%,
+        rgba(var(--bg-red-rgb), var(--glow-a)) 0%,
+        rgba(var(--bg-red-rgb), var(--glow-b)) 42%,
+        rgba(var(--bg-red-rgb), 0.08) 68%,
+        transparent 85%),
+      /* base oscura original */
       linear-gradient(to right,
         rgba(var(--ov-a), 0.93) 0%, rgba(var(--ov-b), 0.88) 30%,
         rgba(var(--ov-b), 0.88) 70%, rgba(var(--ov-a), 0.93) 100%);
   }
-
-  /* ----- Letras azules ----- */
-  .accent-line { color: var(--blue-light); }
-  .hero-title span { background: linear-gradient(180deg, #e6f2ff 0%, #8cc6f7 100%); -webkit-background-clip: text; background-clip: text; }
-  .hero-text { color: rgba(214,230,250,0.88); }
-
-  /* fusión: el titular pasa de azul a rojo */
-  .hero-title .hero-title-accent, .contact-inner h2 span {
-    display: block; width: fit-content;
-    background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; filter: none;
-  }
-  .contact-inner h2 span { margin-left: auto; margin-right: auto; }
-  @media (max-width: 900px) { .hero-title span { margin-left: auto; margin-right: auto; } }
-
-  /* ----- Pestañas rojas: navegación ----- */
-  nav { background: rgba(var(--red-deep-rgb), 0.80); border-color: rgba(255,255,255,0.16); }
-  .nav-links a { color: rgba(255,255,255,0.78); }
-  .nav-links a:hover { color: #fff; }
-  .nav-links a.active-page { color: #fff; background: rgba(255,255,255,0.16); }
-  .nav-cta, .nav-mobile-menu .nav-cta-mobile { background: var(--blue); color: #04162c; border-color: var(--blue); }
-  .nav-cta:hover { background: var(--blue-light); border-color: var(--blue-light); }
-  .nav-hamburger { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.30); }
-  .nav-hamburger span { background: #fff; }
-  .nav-mobile-menu { background: rgba(var(--red-deep-rgb), 0.95); border-color: rgba(255,255,255,0.15); }
-  .nav-mobile-menu a { color: rgba(255,255,255,0.82); border-bottom-color: rgba(255,255,255,0.12); }
-  .nav-mobile-menu a:hover { color: #fff; }
-
-  /* ----- Pestañas rojas: selector de servicios ----- */
-  .svc-filter { background: rgba(var(--red-deep-rgb), 0.55); border-color: rgba(255,127,139,0.30); }
-  .svc-filter button { color: rgba(255,255,255,0.70); }
-  .svc-filter button:hover { color: #fff; }
-  .svc-filter button[aria-pressed="true"] { background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; }
-
-  /* ----- Botones: rojo con filo azul; el secundario va en azul ----- */
-  .btn-accent { background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; border: 1px solid rgba(var(--blue-rgb), 0.55); }
-  .btn-accent:hover { background: linear-gradient(135deg, var(--red-light), var(--red)); }
-  .btn-outline { color: var(--blue-light); border-color: rgba(var(--blue-rgb), 0.60); }
-  .btn-outline:hover { color: #fff; border-color: var(--blue-light); background: rgba(var(--blue-rgb), 0.12); }
-
-  /* ----- Ventanas rojas: tarjetas de servicios (con imagen azul debajo) ----- */
-  .service-card { background: rgba(var(--red-deep-rgb), 0.25); border-color: rgba(255,127,139,0.32); }
-  .service-card:hover { border-color: rgba(255,127,139,0.60); }
-  .service-card::after {
-    background:
-      linear-gradient(90deg, var(--red), var(--blue)) top / 100% 3px no-repeat,
-      linear-gradient(160deg, rgba(var(--red-rgb), 0.42) 0%, rgba(var(--red-deep-rgb), 0.28) 55%, rgba(var(--red-deep-rgb), 0.40) 100%),
-      linear-gradient(to top, rgba(36,6,16,0.88) 0%, rgba(36,6,16,0.60) 50%, rgba(36,6,16,0.35) 100%);
-  }
-  .service-card h4 { color: #fff; }
-  .service-card p { color: rgba(255,232,235,0.88); }
-  /* fusión: etiquetas azules sobre tarjetas rojas */
-  .stag { background: rgba(var(--blue-rgb), 0.20); border-color: rgba(var(--blue-rgb), 0.55); color: #b9dcff; }
-
-  /* ----- Ventanas rojas: tarjetas de Áreas de trabajo ----- */
-  .gallery-card {
-    background: linear-gradient(90deg, var(--red), var(--blue)) top / 100% 3px no-repeat, rgba(var(--red-deep-rgb), 0.45);
-    border: 1px solid rgba(255,127,139,0.30);
-  }
-  .gallery-card h4 { color: #fff; }
-  .gallery-card p { color: rgba(255,232,235,0.88); }
-  .gallery-play { background: rgba(var(--red-deep-rgb), 0.88); border-color: rgba(255,255,255,0.55); }
-  .gallery-play svg { fill: #fff; }
-
-  /* ----- Hero: marcos rojos con imágenes azules, ola roja de fusión ----- */
-  .hero-card-in { border: 1.5px solid rgba(255,127,139,0.75); }
-  .hero-card-in::after { background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, transparent 40%, rgba(var(--red-rgb), 0.18) 100%); }
-  .hero-glow {
-    background:
-      radial-gradient(closest-side at 30% 40%, rgba(var(--blue-rgb), 0.26), transparent 72%),
-      radial-gradient(closest-side at 78% 72%, rgba(var(--red-rgb), 0.16), transparent 72%);
-  }
-  .hero-wave-front { opacity: .30; filter: blur(1.5px) hue-rotate(var(--tint-rot)); }
-
-  /* ----- Slider de videos ----- */
-  .cd.is-active .cd-disc { border-color: var(--red-light); }
-  .cd-cap-title { color: var(--blue-light); }
-  .cd-cap-play { color: var(--red-light); }
-  .cd-arrow { background: rgba(var(--red-deep-rgb), 0.85); border-color: rgba(255,255,255,0.30); }
-  .cd-arrow:hover:not(:disabled) { border-color: var(--red-light); color: #fff; }
-
-  /* ----- Contacto: campos azules, foco rojo ----- */
-  .contact-form input, .contact-form select, .contact-form textarea { background: rgba(6,20,46,0.60); border-color: rgba(var(--blue-rgb), 0.35); }
-  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--red-light); }
-  .contact-form select option { background: #0a1f3f; }
-
-  /* ----- Video, sonido, footer ----- */
-  .vid-frame { border-color: rgba(255,127,139,0.60); }
-  .vid-close { background: rgba(var(--red-deep-rgb), 0.92); border-color: rgba(255,255,255,0.35); }
-  .sound-btn { background: rgba(var(--red-deep-rgb), 0.90); border-color: rgba(255,255,255,0.35); }
-  .sound-btn .eq i:nth-child(odd) { background: #fff; }
-  .sound-btn .eq i:nth-child(even) { background: var(--blue-light); }
-  .sound-btn.hint::before { border-color: var(--red-light); }
-  .site-footer { background: rgba(4,14,34,0.85); border-top: 2px solid; border-image: linear-gradient(90deg, var(--red), var(--blue)) 1; }
 </style>
 </head>
 <body>
