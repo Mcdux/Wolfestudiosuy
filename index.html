@@ -627,7 +627,7 @@
 <!-- =====================================================================
      FONDO AZUL / ROJO DIFUMINADO
      Un lado azul y el otro rojo, como manchas de luz desenfocadas que se
-     mezclan en el centro. Solo cambia el fondo: el resto del diseño queda igual.
+     mezclan en el centro. Solo cambia el fondo: el resto del diseño queda igual. El fondo es fijo (no se mueve con el scroll).
      Ajustes: --glow-a (intensidad en el borde) y --glow-b (alcance del difuminado).
      Para quitarlo, borrá este bloque de estilos completo.
      ===================================================================== -->
@@ -638,7 +638,14 @@
     --glow-a: 0.50;   /* intensidad del color en el borde de cada lado */
     --glow-b: 0.26;   /* intensidad en la zona intermedia del difuminado */
   }
-  .page-section::before, .final-overlay {
+  /* ----- FONDO FIJO -----
+     La imagen y el degradé viven en dos capas fijas detrás de todo: al hacer
+     scroll solo se mueve el contenido y no hay salto de imagen entre secciones. */
+  .page-section::before, .page-section::after, .final-bg, .final-overlay { display: none; }
+  body::before, body::after { content: ''; position: fixed; inset: 0; pointer-events: none; }
+  body::before { z-index: -2; background-image: var(--bg-img); background-size: cover; background-position: center; transform: scale(1.05); }
+  body::after {
+    z-index: -1;
     background:
       /* lado izquierdo: azul */
       radial-gradient(ellipse 70% 90% at 0% 45%,
